@@ -68,8 +68,11 @@ function getFileFilenameFor(req, fName) {
  */
 function getImageFilename(req) {
     let userPath = csp.getUserOrOwnerPath(req);
+    let imageFolder = path.join(userPath, csp.projectName(req), 'images')
 
-    return path.join(userPath, csp.projectName(req), 'images', csp.getParameter(req, PARAM_IMAGE));
+    createFolderIfMissing(imageFolder);
+
+    return path.join(imageFolder, csp.getParameter(req, PARAM_IMAGE));
 }
 
 /**
@@ -81,14 +84,27 @@ function getImageFilename(req) {
 function saveAction(req) {
     let obj = req.body;
     obj.server_ts = Date.now();
+    let actionsFolder = path.join(csp.getProjectPath(req), 'actions')
 
-    let fileName = path.join(csp.getProjectPath(req), 'actions', `${obj.server_ts}_${random(0, 9)}.json`);
+    try {
+        createFolderIfMissing(actionsFolder);
 
-    fs.writeFile(fileName, JSON.stringify(obj, null, 1), function(err) {
-        if (err) {
-            log.error('messages.file.save_file_error', { "fileName": fileName }, err);
-        }
-    });
+        let fileName = path.join(actionsFolder, `${obj.server_ts}_${random(0, 9)}.json`);
+
+        fs.writeFile(fileName, JSON.stringify(obj, null, 1), function(err) {
+            if (err) {
+                log.error('messages.file.save_file_error', { "fileName": fileName }, err);
+            }
+        });
+    } catch(e) {
+        // ignore the error
+    }
+}
+
+function createFolderIfMissing(folder) {
+    if (!fs.existsSync(folder)){
+        fs.mkdirSync(folder);
+    }
 }
 
 function random(min, max) {
@@ -168,6 +184,8 @@ function listActions(req) {
 function countLocalProjectActions(req) {
     const fn = path.join(csp.getProjectPath(req), 'actions');
 
+    createFolderIfMissing(fn);
+
     return doCountActions(fn);
 }
 
@@ -179,6 +197,8 @@ function countLocalProjectActions(req) {
  */
 function countSharedProjectActions(req) {
     const fn = path.join(csp.getProjectPath(req, undefined, csp.ownerName(req)), 'actions');
+
+    createFolderIfMissing(fn);
 
     return doCountActions(fn);
 }
@@ -224,6 +244,8 @@ function doCountActions(fn) {
 function listLocalProjectActions(req) {
     const fn = path.join(csp.getProjectPath(req), 'actions');
 
+    createFolderIfMissing(fn);
+
     return doListActions(fn);
 }
 
@@ -235,6 +257,8 @@ function listLocalProjectActions(req) {
  */
 function listSharedProjectActions(req) {
     const fullPath = path.join(csp.getProjectPath(req, undefined, csp.ownerName(req)), 'actions');
+
+    createFolderIfMissing(fullPath);
 
     return doListActions(fullPath);
 }
@@ -298,6 +322,8 @@ function clearActions(req) {
 function clearLocalProjectActions(req) {
     const fn = path.join(csp.getProjectPath(req), 'actions');
 
+    createFolderIfMissing(fn);
+
     return doClearActions(fn);
 }
 
@@ -308,6 +334,8 @@ function clearLocalProjectActions(req) {
  */
 function clearSharedProjectActions(req) {
     const fullPath = path.join(csp.getProjectPath(req, undefined, csp.ownerName(req)), 'actions');
+
+    createFolderIfMissing(fullPath);
 
     return doClearActions(fullPath);
 }
@@ -377,7 +405,7 @@ function uploadFile(req) {
  * Return a list of all the filenames for the specified project.
  *
  * @param {e.Request} req       The http request object.
- * @return {string[]}       The list of all filenames for the project.
+ * @return {string[]}           The list of all filenames for the project.
  */
 function listAllFiles(req) {
     let result = [];
@@ -393,18 +421,24 @@ function listAllFiles(req) {
 
     if (authorised) {
         const filePath = path.join(csp.getProjectPath(req, undefined, csp.ownerName(req)), 'files');
-        const fList = fs.readdirSync(filePath);
 
-        for (let fn of fList) {
-            const stat = fs.statSync(path.join(filePath, fn));
+        createFolderIfMissing(filePath);
+        try {
+            const fList = fs.readdirSync(filePath);
 
-            if (stat && stat.isDirectory()) {
-                //TODO: Handle sub-folders when needed
-            } else {
-                if (!csp.isExcluded(fn)) {
-                    result.push(fn);
+            for (let fn of fList) {
+                const stat = fs.statSync(path.join(filePath, fn));
+
+                if (stat && stat.isDirectory()) {
+                    //TODO: Handle sub-folders when needed
+                } else {
+                    if (!csp.isExcluded(fn)) {
+                        result.push(fn);
+                    }
                 }
             }
+        } catch (e) {
+            // The files folder does not exist.  Ignore the error
         }
     }
 
@@ -422,7 +456,11 @@ function listAllFiles(req) {
 function saveUploadedFile(req, file, result) {
     let projName = req.body.project;
     let projFolder = csp.getProjectPath(req, projName);
-    let fileName = path.join(projFolder, 'files', file.name);
+    let filesFolder = path.join(projFolder, 'files')
+
+    createFolderIfMissing(filesFolder);
+
+    let fileName = path.join(filesFolder, file.name);
 
     log.debug('messages.file.saved_file', { "fileName": fileName });
 
@@ -445,7 +483,11 @@ function saveCopyOfImage(req) {
     let obj = req.body;
     let projName = req.body.project;
     let projFolder = csp.getProjectPath(req, projName);
-    let fileName = path.join(projFolder, 'images', obj.imageName);
+    let imagesFolder = path.join(projFolder, 'images')
+
+    createFolderIfMissing(imagesFolder);
+
+    let fileName = path.join(imagesFolder, obj.imageName);
 
     //TODO: This is virtually identical to saveDirectFile, but with different target folder and peropty names
     //TODO: Pass in the result object like for saveUploadedFile() method
@@ -469,7 +511,11 @@ function saveDirectFile(req) {
     let obj = req.body;
     let projName = req.body.project;
     let projFolder = csp.getProjectPath(req, projName);
-    let fileName = path.join(projFolder, 'files', obj.fileName);
+    let filesFolder = path.join(projFolder, 'files')
+
+    createFolderIfMissing(filesFolder);
+
+    let fileName = path.join(filesFolder, obj.fileName);
 
     log.debug('messages.file.saved_image', { "fileName": fileName });
 
@@ -492,6 +538,9 @@ function saveTextFile(req) {
     let content = req.body;
 
     let projFolder = path.join(csp.getProjectPath(req), 'files');
+
+    createFolderIfMissing(projFolder);
+
     let fileName = req.query[PARAM_FILENAME];
     let folder = req.query[PARAM_FOLDER] || '';
 

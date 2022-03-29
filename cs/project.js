@@ -270,7 +270,11 @@ function saveProject(req) {
     }
 
     if (settings.backup_projects) {
-        let newFileName = path.join(projFolder, 'backups', `${Date.now()}_ObjectModel.json`);
+        let backupsFolder = path.join(projFolder, 'backups')
+
+        createFolderIfMissing(backupsFolder);
+
+        let newFileName = path.join(backupsFolder, `${Date.now()}_ObjectModel.json`);
 
         try {
             fs.copyFileSync(fileName, newFileName);
@@ -280,6 +284,12 @@ function saveProject(req) {
     }
 
     return obj;
+}
+
+function createFolderIfMissing(folder) {
+    if (!fs.existsSync(folder)){
+        fs.mkdirSync(folder);
+    }
 }
 
 /**

@@ -36,7 +36,7 @@ mkdir -p ./plugins           # this is where all plugin code will be copied or c
 echo "copying example files"
 cp ./examples/example_creds.js ./creds.js
 cp ./examples/example_plugins/example_plugins.js ./plugins.js
-cp ./examples/example_functions/example_functions.js ./data/functions/functions.json
+cp ./examples/example_functions/example_functions.json ./data/functions/functions.json
 cp ./examples/example_project_permissions.json ./data/permissions/project_permissions.json
 cp ./examples/example_users.json ./data/users/users.json
 cp ./examples/example_palettes/* ./data/saves/admin/_palettes/

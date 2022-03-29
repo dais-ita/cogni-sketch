@@ -1,9 +1,11 @@
 .DS_Store
 .idea
-node_modules
 .vscode
+
+node_modules
+
 plugins.js
 creds.js
-gs_creds.json
+
 /plugins/
 /data/

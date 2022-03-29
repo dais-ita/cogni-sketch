@@ -1,0 +1,18 @@
+{
+ "project": "empty",
+ "paletteName": "default",
+ "general": {
+  "uid": 1,
+  "viewBox": {
+   "left": 0,
+   "top": 0,
+   "width": 1433,
+   "height": 706,
+   "zoomFactor": 1
+  }
+ },
+ "nodes": {},
+ "links": {},
+ "extras": {},
+ "server_ts": 1648569565158
+}

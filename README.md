@@ -5,17 +5,13 @@ between human users and machine agents.
 
 This code and the research behind it has been sponsored by the
 [DAIS ITA](https://dais-legacy.org/) (Distributed Analytics and Information Science
-International Technology Alliance) research program.
-
-```
-This research was sponsored by the U.S. Army Research Laboratory and the U.K. Ministry of
+International Technology Alliance) research program: `This research was sponsored by the U.S. Army Research Laboratory and the U.K. Ministry of
 Defence under Agreement Number W911NF-16-3-0001. The views and conclusions contained in this
 document are those of the authors and should not be interpreted as representing the official
 policies, either expressed or implied, of the U.S. Army Research Laboratory, the U.S.
 Government, the U.K. Ministry of Defence or the U.K. Government. The U.S. and U.K. Governments
 are authorized to reproduce and distribute reprints for Government purposes notwithstanding
-any copyright notation hereon.
-```
+any copyright notation hereon.`
 
 To learn more about the environment you can refer to various short videos on YouTube,
 e.g. [this introductory video](https://www.youtube.com/watch?v=KmaheXO6D9M)

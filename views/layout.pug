@@ -1,0 +1,58 @@
+// MIT License
+//
+// Copyright (c) 2022 International Business Machines
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated
+// documentation files (the "Software"), to deal in the Software without restriction, including without limitation the
+// rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to
+// permit persons to whom the Software is furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in all copies or substantial portions of the
+// Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+// WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
+// OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+doctype html
+html
+  meta(charset="utf-8")
+  meta(name="viewport", content="width=device-width, initial-scale=1, shrink-to-fit=no")
+
+  head
+    title=title
+
+    link(rel="icon" href="images/cs/favicon_light.png" type="image/png")
+
+    // Stylesheets: External
+    link(rel="stylesheet" href="/jquery-modal/jquery.modal.css" type="text/css")
+    link(rel="stylesheet" href="/jquery-ui/jquery-ui.css" type="text/css")
+    link(rel="stylesheet" href="/quill/quill.snow.css" type="text/css")
+    link(rel="stylesheet" href="/json-viewer/jquery.json-viewer.css" type="text/css")
+
+    // Stylesheets: Local
+    link(rel="stylesheet" href="/stylesheets/basic.css" type="text/css")
+    link(rel="stylesheet" href="/stylesheets/csQuill.css" type="text/css")
+
+    // Javascript: 3rd party
+    script(src="/jquery/jquery.js")
+    script(src="/jquery-modal/jquery.modal.js")
+    script(src="/jquery-ui/jquery-ui.js")
+    script(src="/popper/popper.js")
+    script(src="/scripts/bootstrap/js/bootstrap.js")
+    script(src="/d3/d3.js")
+    script(src="/quill/quill.js")
+    script(src="/json-viewer/jquery.json-viewer.js")
+    script(src="/i18next/i18next.js")
+    script(src="/i18next-http-backend/i18nextHttpBackend.js")
+    script(src="/handlebars/handlebars.js")
+
+    // Stylesheets: Bootstrap (must be after jquery)
+    link(rel="stylesheet" href="/scripts/bootstrap/css/bootstrap.css")
+
+    // Javascript: Local modules
+    script(type="module" src="/javascripts/private/main.js")
+
+body
+  block content

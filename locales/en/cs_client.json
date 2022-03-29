@@ -1,0 +1,42 @@
+{
+  "messages": {
+    "actions": {
+      "loaded_module": "Loaded action module: {{moduleName}}",
+      "load_error": "Could not load action module: {{moduleName}}"
+    },
+    "functions": {
+      "loaded_module": "Loaded function module: {{moduleName}}",
+      "load_error": "Could not load function module: {{moduleName}}"
+    },
+    "panes": {
+      "unexpected": "Unexpected pane: {{paneName}}",
+      "notfound": "Cannot find pane using tabName '{{tabName}}'",
+      "no_position": "Pane position not found for: {{paneName}}",
+      "loaded": "Loaded pane: {{paneName}}",
+      "not_loaded": "Could not load pane: {{paneName}}"
+    },
+    "plugins": {
+      "stylesheet_imports": "Dynamic stylesheet imports for plugin: {{pluginName}}",
+      "javascript_imports": "Dynamic javascript imports for plugin: {{pluginName}}"
+    },
+    "types": {
+      "manual_population": "{{typeName}} objects must be populated manually'"
+    },
+    "ui": {
+      "debug": {
+        "enabled": "Debug mode enabled",
+        "disabled": "Debug mode disabled"
+      },
+      "search": {
+        "in_progress": "Search in progress... please wait",
+        "minimum_needed": "Please enter at least 2 characters to search"
+      }
+    },
+    "http": {
+      "GET": "An error occurred GETing from {{url}}"
+    },
+    "log": {
+      "not_yet_implemented": "Not yet implemented"
+    }
+  }
+}

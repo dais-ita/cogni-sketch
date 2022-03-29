@@ -1,0 +1,1 @@
+Any functions considered core to the Cogni-sketch environment should be located here.

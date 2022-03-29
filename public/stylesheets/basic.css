@@ -1,0 +1,521 @@
+/*
+ * @file CSS definitions for the main application.
+ *
+ * @author Dave Braines
+*/
+
+foreignObject { overflow: visible; }
+
+html, body {
+    height: 100%;
+}
+
+/* to ensure no canvas highlight is drawn when it has focus */
+svg {
+    outline: none;
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0); /* mobile webkit */
+}
+
+p {
+    margin-bottom: 0px !important;
+}
+
+.cs-dynamic-link {
+    /* Styles for anchors without href, same as a:link */
+    color: blue;
+    text-decoration: underline;
+    cursor: auto;
+}
+
+.cs-avoid-clicks {
+    pointer-events: none;
+}
+
+.cs-allow-clicks {
+    pointer-events: all;
+}
+
+.cs-user-status {
+    width: 10px;
+}
+
+/* Override from jquery accordion */
+.ui-accordion .ui-accordion-content {
+    text-align: left;
+    padding: 1em 0;
+}
+
+.cs-btn-default {
+    border: 1px solid #000;
+}
+
+.cs-btn-close {
+    border: 1px solid #000;
+}
+
+.cs-tab {
+    display: flex;
+    vertical-align: middle;
+    padding-right: 0.5em;
+}
+
+.cs-mini-icon {
+    width: 20px;
+}
+
+.cs-toast {
+    z-index: 1060;
+}
+
+.cs-table-node {
+    display: table-cell;
+    width: 32px;
+    height: 32px;
+}
+
+.cs-table-icon {
+    display: inline-block;
+    color: white;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 50%;
+    margin: 0;
+    padding: 0;
+    width: 32px;
+    height: 32px;
+}
+
+.cs-table-image {
+    display: inline-block;
+    padding: 5px;
+    width: 28px;
+}
+
+.cs-table-label {
+    display: inline-block;
+}
+
+/* This is to avoid an unexplained overflow if the height is set to 100% in bootstrap */
+.cs-tab-canvas {
+    height: 94%;
+}
+
+.cs-outline {
+    border: 1px solid #c5c5c5;
+    border-radius: 3px;
+}
+
+.cs-left {
+    padding-left: 2px !important;
+    padding-right: 2px !important;
+}
+
+.cs-scroll {
+    overflow-y:scroll;
+}
+
+.cs-relative {
+    position: relative;
+}
+
+.cs-stats {
+    position: absolute;
+    top:15px;
+    right: 10px;
+}
+
+.cs-palette-list {
+    margin-left: 5px;
+    width: 100px;
+}
+
+.cs-palette-menu {
+    position: absolute !important;
+    top: -12px;
+    right: 38px;
+    width: 10px;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.cs-canvas-svg {
+    background-color: cornsilk;
+    width: 100%;
+    height: 100%;
+    border: 1px;
+    overflow: hidden;
+}
+
+.cs-table {
+    border: 1px solid black;
+}
+
+.cs-node-content {
+    margin-top: 5px;
+    margin-left: 15px;
+}
+
+.cs-palette {
+    overflow-y: scroll;
+}
+
+.cs-functions {
+    overflow-y: scroll;
+}
+
+.cs-files {
+    overflow-y: scroll;
+}
+
+.cs-palette-ul {
+    margin: 3px;
+    padding: 3px;
+}
+
+.cs-palette-li {
+    list-style: none;
+    text-align: left;
+    border-radius: 15px;
+    background: #73AD21;
+    color: white;
+    padding: 10px;
+    margin: 0 0 3px 0;
+    font: .8rem/1 arial, helvetica, sans-serif;
+    white-space: nowrap;
+}
+
+.cs-function-li {
+    list-style: none;
+    text-align: left;
+    border-radius: 15px;
+    background: #73AD21;
+    color: white;
+    padding: 10px;
+    margin: 0 0 3px 0;
+    font: .8rem/1 arial, helvetica, sans-serif;
+    white-space: nowrap;
+}
+
+.cs-palette-icon {
+    vertical-align: middle;
+    width: 20px;
+    height: 20px;
+    margin: 0 5px 0 0;
+}
+
+.cs-function-icon {
+    vertical-align: middle;
+    width: 20px;
+    height: 20px;
+    margin: 0 5px 0 0;
+}
+
+.cs-file-li {
+    list-style: none;
+    text-align: left;
+    border-radius: 15px;
+    background: #73AD21;
+    color: white;
+    padding: 4px;
+    margin: 0 0 3px 0;
+    font: .8rem/1 arial, helvetica, sans-serif;
+    white-space: nowrap;
+    width: 30px;
+}
+
+.cs-file-label {
+    color: black;
+    margin: 0 0 0 4px;
+    font: .8rem/1 arial, helvetica, sans-serif;
+}
+
+.cs-file-icon {
+    vertical-align: middle;
+    width: 20px;
+    height: 20px;
+    margin: 0 5px 0 0;
+}
+
+.cs-settings {
+    width: 100%;
+    height: 150px;
+}
+
+.cs-layout {
+    width: 100%;
+    height: 150px;
+}
+
+.cs-button {
+    list-style: none;
+    background: red;
+    color: white;
+    padding: 3px;
+    width: 20px;
+    height: 20px;
+    border-radius: 15px;
+}
+
+.cs-image-normal {
+    cursor: pointer;
+}
+
+.cs-node-normal {
+    stroke: black;
+    stroke-width: 1px;
+    cursor: pointer;
+    /*    fill: transparent; */
+}
+
+.cs-node-selected {
+    stroke: deeppink;
+    stroke-width: 8px;
+    cursor: pointer;
+/*    fill: transparent; */
+}
+
+.cs-link {
+    stroke-width: 1px;
+    fill: transparent;
+    font: .8rem/1 arial, helvetica, sans-serif;
+    pointer-events: none;
+}
+
+.cs-link-normal {
+    stroke: black;
+}
+
+.cs-link-semantic {
+    stroke: blue;
+}
+
+.cs-link-selected {
+    stroke: deeppink;
+}
+
+.cs-link-label-anchor {
+    fill: #000000;
+    background-color: #000000;
+    cursor: pointer;
+}
+
+.cs-label-normal {
+    font-family: arial, helvetica, sans-serif;
+    font-size: 15px;
+/*    font-size: 40px; */
+    color: black;
+    display: inline-block;
+    text-align: left;
+    padding-left: 0;
+    border-style: hidden;
+    width: 700px;
+}
+
+.cs-label-size-2 {
+    font-family: arial, helvetica, sans-serif;
+    font-size: 45px;
+    color: black;
+    display: inline-block;
+    text-align: left;
+    padding-left: 0;
+    border-style: hidden;
+    width: 700px;
+}
+
+.cs-label-size-3 {
+    font-family: arial, helvetica, sans-serif;
+    font-size: 60px;
+    color: black;
+    display: inline-block;
+    text-align: left;
+    padding-left: 0;
+    border-style: hidden;
+    width: 700px;
+}
+
+.cs-link-label-normal {
+    font-family: arial, helvetica, sans-serif;
+    font-size: 12px;
+    /* font-size: 36px; */
+    color: black;
+    display: inline-block;
+    text-align: left;
+    padding-left: 0;
+    border-style: hidden;
+    width: 500px;
+}
+
+.cs-link-label-semantic {
+    font-family: arial, helvetica, sans-serif;
+    font-size: 12px;
+    color: blue;
+    display: inline-block;
+    text-align: left;
+    padding-left: 0;
+    border-style: hidden;
+    width: 500px;
+}
+
+.cs-metadata {
+    font-family: arial, helvetica, sans-serif;
+    font-size: 12px;
+    color: dimgrey;
+    display: inline-block;
+    text-align: left;
+    padding-left: 0;
+    border-style: hidden;
+}
+
+.cs-hyperlink {
+    color: cadetblue;
+}
+
+.cs-label-header {
+    font-size: 60px;
+}
+
+.cs-help {
+    font-family: arial, helvetica, sans-serif;
+    font-style: italic;
+    font-size: 12px;
+    color: dimgray;
+}
+
+.cs-help-heading {
+    font-family: arial, helvetica, sans-serif;
+    font-size: 18px;
+    color: black;
+}
+
+.cs-help-main {
+    font-family: arial, helvetica, sans-serif;
+    font-size: 1em;
+    color: dimgray;
+    margin-bottom: 1em !important;
+}
+
+.cs-help-bold {
+    font-family: arial, helvetica, sans-serif;
+    font-size: 1em;
+    color: black;
+    font-style: italic;
+    font-weight: bold;
+}
+
+.cs-fo-text-content {
+    font-family: arial, helvetica, sans-serif;
+    font-size: 18px;
+    color: gray;
+    display: inline-block;
+    text-align: left;
+    padding-left: 18px;
+    border-style: hidden;
+}
+
+.cs-pre {
+    overflow: visible !important;      /* ensure that the overflow behavior is to visible rather than auto - otherwise causes problems with drop down menus */
+}
+
+.cs-fo-link {
+    margin: 20px 0 0;
+    font: .8rem/1 arial, helvetica, sans-serif;
+}
+
+.cs-fo-image {
+    margin: 5px 0 0;
+}
+
+.cs-fo-template {
+    padding-left: 18px;
+}
+
+.cs-grid-table {
+    border: 1px solid black;
+}
+
+.cs-table-cell {
+    padding: 5px;
+}
+
+.cs-table-header {
+    padding: 5px;
+    font-weight: bold;
+}
+
+.cs-video-frame {
+    position: relative;
+    pointer-events: all;
+    top: 0;
+    left: 0;
+    right: 40px;
+    bottom: 40px;
+}
+
+.cs-mark-searchMatch {
+    background-color: dodgerblue;
+}
+
+.cs-rectangle-select {
+    stroke: purple;
+    stroke-width: 2px;
+    fill: transparent;
+}
+
+.cs-editor-text {
+    width:100%;
+    height: 300px;
+}
+
+.cs-popup-import {
+    width: 100%;
+    height: 400px;
+}
+
+.cs-modal-overflow {
+    overflow-x: auto !important;
+}
+
+/*
+node colors
+*/
+.cs-node-unknown {
+    fill: #C62828;
+    background-color: #C62828;
+}
+
+.cs-node-red {
+    fill: #C62828;
+    background-color: #C62828;
+}
+
+.cs-node-blue {
+    fill: #311B92;
+    background-color: #311B92;
+}
+
+.cs-node-green {
+    fill: #2E7D32;
+    background-color: #2E7D32;
+}
+
+.cs-node-grey {
+    fill: #CACFD2;
+    background-color: #CACFD2;
+}
+
+.cs-node-orange {
+    fill: #F39C12;
+    background-color: #F39C12;
+}
+
+.cs-affiliation-decorator {
+    position: relative;
+    width: 20px;
+    top: -35px;
+    left: -45px;
+}
+
+.cs-nlp-temp {
+    background-color: white;
+    font-size: 48px;
+}

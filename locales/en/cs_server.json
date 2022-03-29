@@ -1,0 +1,56 @@
+{
+  "messages": {
+    "palette": {
+      "list_error": "Cannot read user palette folder: '{{- palPath}}'",
+      "read_error": "Palette named '{{palName}}' ({{- fn}}) could not be loaded.  Using default palette instead",
+      "parse_error": "Palette named '{{palName}}' ({{- fn}}) could not be parsed.  Using default palette instead",
+      "write_error": "Error writing palette file: {{- fn}}",
+      "no_mod_default": "The default palette cannot be modified",
+      "no_del_default": "The default palette cannot be deleted"
+    },
+    "project": {
+      "read_error": "Cannot read user project folder: '{{- fileName}}'",
+      "parse_error": "Project in folder '{{- fileName}}' could not be parsed",
+      "read_proposals_error": "Cannot read project proposals folder: '{{- fileName}}'",
+      "write_error": "Error writing project file '{{- fileName}}'",
+      "write_proposals_error": "Error writing proposed user edits to file '{{- fileName}}'"
+    },
+    "file": {
+      "saved_image": "Saved image to file: {{- fileName}}",
+      "save_image_error": "Error saving image to file: {{- fileName}}",
+      "no_files": "No files uploaded",
+      "uploaded": "{{count}} files successfully uploaded",
+      "failed": " ({{count}} files failed)",
+      "saved_file": "Saved file as: {{- fileName}}",
+      "save_file_error": "Error saving file: {{- fileName}}"
+    },
+    "function": {
+      "parse_error": "Error parsing functions file: '{{- fileName}}'",
+      "read_error": "Cannot read functions file: '{{- fileName}}'"
+    },
+    "action": {
+      "read_error": "`Error reading action file '{{- fileName}}' [{{type}}]",
+      "delete_error": "Error removing file {{- fileName}}"
+    },
+    "security": {
+      "insecure_password": "Password must be at least {{length}} characters [{{type}}]",
+      "no_username": "No user name was specified [{{type}}]",
+      "invalid_user": "User {{lcUserName}} does not exist [{{type}}]",
+      "user_exists": "User {{userName}} already exists",
+      "logged_on": "User '{{userId}}' has logged on",
+      "logged_off": "User '{{userId}}' has logged off",
+      "invalid_password": "Invalid password specified for user '{{userId}}'",
+      "account_disabled": "'The user account '{{userId}}' is disabled'",
+      "user_invalid": "Invalid username '{{userId}}' specified",
+      "access_prevented": "Access to the {{type}} '{{name}}' for user '{{userName}}' was not allowed"
+    },
+    "general": {
+      "internationalization_loaded": "Server internationalization loaded",
+      "plugin_loaded": "Plugin: {{- pluginRoute}} -> {{- pluginLocation}}",
+      "plugin_import": "  Plugin import: {{- importRoute}} -> {{- importLocation}}",
+      "server_listening": "Listening on port {{port}}",
+      "set_cookie": "  Setting cookie '{{key}}' for {{pluginName}}",
+      "http": "{{verb}} - {{label}}"
+    }
+  }
+}

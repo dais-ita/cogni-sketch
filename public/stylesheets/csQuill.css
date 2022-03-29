@@ -1,0 +1,23 @@
+/*
+ * @file CSS definitions for the Quill rich text plugin.
+ *
+ * By using the specific qQuill class names to allow the correct styles specified inside the Quill editor
+ * to be shown for nodes rendered on the canvas.
+ *
+ * @author Dave Braines
+*/
+
+pre.ql-syntax {
+    background-color: #23241f;
+    color: #f8f8f2;
+}
+
+.ql-size-small {
+    font-size: 0.75em;
+}
+.ql-size-large {
+    font-size: 2.5em;
+}
+.ql-size-huge {
+    font-size: 3.5em;
+}

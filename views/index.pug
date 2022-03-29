@@ -1,0 +1,64 @@
+// MIT License
+//
+// Copyright (c) 2022 International Business Machines
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated
+// documentation files (the "Software"), to deal in the Software without restriction, including without limitation the
+// rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to
+// permit persons to whom the Software is furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in all copies or substantial portions of the
+// Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+// WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
+// OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+extends layout
+
+block content
+    div.container-fluid.fixed-top#cs-overall
+        //Navigation
+        include section_nav
+
+        //Palette and canvas
+        div.row#cs-main
+            div.col-sm-2.cs-left.cs-scroll#cs-left-pane
+                //Palette
+                div.bg-light.p-0#cs-palette-outer
+                    //Types
+                    div.bg-light.pb-1.cs-relative#cs-palette
+                        div.btn.btn-block.btn-secondary.text-left#cs-btn-palette(data-toggle="collapse", data-target="#cs-palette-detail", aria-expanded="true", aria-controls="cs-palette-detail") Palette:
+                            select.cs-palette-list#cs-palette-list
+                        include section_nav_palette
+                        div.collapse.show.cs-outline#cs-palette-detail
+                            div.px-2.cs-palette#cs-acc-palette
+                            div.p-1#cs-search-palette
+                                input.form-control#cs-search-palette-text(type="text", placeholder="Search Palette")
+                            div.d-none.alert-info#cs-acc-no-palette No palette items currently defined
+
+                    //Files
+                    div.bg-light.pb-1.cs-relative#cs-files
+                        div.btn.btn-block.btn-secondary.text-left#cs-btn-files(type="button", data-toggle="collapse", data-target="#cs-file-detail", aria-expanded="false", aria-controls="cs-file-detail") Files
+                        include section_nav_file
+                        div.collapse.cs-outline#cs-file-detail
+                            div.px-2.py-1.cs-files.d-none#cs-list-files
+                            div.d-none.alert-info#cs-list-no-files No files currently uploaded
+
+                    //Functions (no pb-1 as it is the bottom section
+                    div.bg-light.cs-scroll.cs-relative#cs-functions
+                        div.btn.btn-block.btn-secondary.text-left#cs-btn-functions(type="button", data-toggle="collapse", data-target="#cs-function-detail", aria-expanded="false", aria-controls="cs-function-detail") Functions
+                        div.collapse.cs-outline#cs-function-detail
+                            div.px-2.py-1.cs-functions.d-none#cs-acc-functions
+                            div.d-none.alert-info#cs-acc-no-functions No functions currently defined
+            div.col-sm-10.p-0#cs-right-pane
+                div.h-100#cs-right-inner
+                    div.bg-light.h-100#cs-tabs
+                        div.cs-stats.cs-metadata#csStats
+                        ul.nav.nav-pills#cs-tabs-list
+                            //This is populated by modules defined in /panes and any plugins defining panes
+                        div.tab-content#cs-tabs-content
+                            //This is populated by modules defined in /panes and any plugins defining panes
+    include section_toasts
+    canvas#cs-hidden-canvas

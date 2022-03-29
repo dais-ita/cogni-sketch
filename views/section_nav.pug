@@ -1,0 +1,104 @@
+// MIT License
+//
+// Copyright (c) 2022 International Business Machines
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated
+// documentation files (the "Software"), to deal in the Software without restriction, including without limitation the
+// rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to
+// permit persons to whom the Software is furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in all copies or substantial portions of the
+// Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+// WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
+// OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+nav.navbar.navbar-expand-md.navbar-light.bg-light#csNavbar
+    //Nav: Cogni-sketch
+    div.navbar-nav.mr-5
+        h1.h3.py-2 Cogni-Sketch
+        div.collapse.navbar-collapse
+            ul.navbar-nav
+                li.nav-item.dropdown
+                    a.nav-link.dropdown-toggle.active#cs-navbar-app(role="button", data-toggle="dropdown", aria-haspopup="true", aria-expanded="false")
+                        img(src="./images/cs/favicon_dark.png", width="40", height="40", title="Cogni-sketch home")
+                    div.dropdown-menu(aria-labelledby="cs-navbar-app")#cs-nav-application
+                        a.dropdown-item.disabled.text-info Cogni-sketch menu:
+                        div.dropdown-divider
+                        a.dropdown-item#cs-show-help Help
+                        div.dropdown-divider
+                        div.dropdown-item
+                            label(for="cs-debug-mode") Debug mode&nbsp;&nbsp;
+                            input#cs-debug-mode(type="checkbox")
+                        div.dropdown-item
+                            label(for="cs-auto-save-mode") AutoSave project changes&nbsp;&nbsp;
+                            input#cs-auto-save-mode(type="checkbox")
+                        div.dropdown-divider
+                        a.dropdown-item#cs-show-version Version: #{version}
+    //Nav: Projects
+    div.navbar-nav.mr-5
+        form.form-inline
+            label(for="cs-project-list") Project:&nbsp;&nbsp;
+            select.form-control#cs-project-list(tabIndex="-1")
+        div.collapse.navbar-collapse#cs-nav-projects
+            ul.navbar-nav
+                li.nav-item.dropdown
+                    a.nav-link.dropdown-toggle.active#cs-navbar-project(href="#", role="button", data-toggle="dropdown", aria-haspopup="true", aria-expanded="false")
+                        img.bg-dark.rounded-pill(src="./images/cs/icon-options.png", width="25", height="25", title="Project menu")
+                    div.dropdown-menu(aria-labelledby="cs-navbar-project")
+                        a.dropdown-item.disabled.text-info Project menu:
+                        div.dropdown-divider
+                        a.dropdown-item#cs-create-new-project Create new project...
+                        a.dropdown-item#cs-import-project Import existing project...
+                        div.dropdown-divider
+                        a.dropdown-item#cs-reload-project Reload this project
+                        a.dropdown-item#cs-save-project Save this project
+                        a.dropdown-item#cs-save-project-as Save this project as...
+                        a.dropdown-item#cs-export-project Export this project...
+                        a.dropdown-item#cs-delete-project Delete this project...
+                        a.dropdown-item#cs-project-permissions Project permissions...
+                        a.dropdown-item#cs-project-reset-canvas Reset canvas position
+                        div.dropdown-divider
+                        a.dropdown-item.disabled#cs-playback Playback this project
+                        div.dropdown-item
+                            label(for="cs-show-hidden") Show hidden nodes&nbsp;&nbsp;
+                            input#cs-show-hidden(type="checkbox")
+    //Nav: Search
+    div.navbar-nav.mr-5
+        form.form-inline#cs-search-form
+            input.form-control#cs-search-text(type="text", placeholder="Search Canvas")
+        div.collapse.navbar-collapse
+            ul.navbar-nav
+                li.nav-item
+                    a.nav-link#cs-search-previous
+                        img.bg-dark.rounded-pill(src="./images/cs/icon-search-previous.png", width="25", height="25", title="Previous search match")
+                li.nav-item
+                    a.nav-link#cs-search-next
+                        img.bg-dark.rounded-pill(src="./images/cs/icon-search-next.png", width="25", height="25", title="Next search match")
+                li.nav-item.dropdown
+                    a.nav-link.dropdown-toggle.active#cs-navbar-search(href="#", role="button", data-toggle="dropdown", aria-haspopup="true", aria-expanded="false")
+                        img.bg-dark.rounded-pill(src="./images/cs/icon-options.png", width="25", height="25", title="Search options")
+
+                    div.dropdown-menu#cs-nav-search(aria-labelledby="cs-navbar-search")
+                        a.dropdown-item.disabled.text-info Search menu:
+                        div.dropdown-divider
+                        div.dropdown-item
+                            label(for="cs-case-sensitive") Case sensitive&nbsp;&nbsp;
+                            input#cs-case-sensitive(type="checkbox")
+                        div.dropdown-item
+                            label(for="cs-deep-search") Deep search&nbsp;&nbsp;
+                            input#cs-deep-search(type="checkbox")
+        div
+            div.mb-0.py-2.d-none.alert.alert-secondary.cs-metadata#cs-search-results-message
+
+    //Nav: User
+    div.navbar-nav.ml-auto
+        ul.navbar-nav
+            li.nav-item
+                a.nav-link(href="#")
+                    - var userTitle = "Logged is as " + user;
+                    img#cs-user-icon(src="./images/cs/icon-user-good.png", width="50", height="50", title=userTitle)
+            li.nav-item.mt-3
+                a.nav-link(href="./logout") Logout

@@ -1,0 +1,167 @@
+{
+ "name": "default",
+ "server_ts": 1613393028850,
+ "sections": [
+  {
+   "name": "core",
+   "label": "core"
+  }
+ ],
+ "items": {
+  "text": {
+   "id": "text",
+   "icon": "./images/palette/icon-text.svg",
+   "icon-alt": "icon-text",
+   "label": "text",
+   "nodeColor": "blue",
+   "position": 1,
+   "section": "core",
+   "settings": {
+    "canChangeTypeAfterCreation": true,
+    "defaultWidth": "500px",
+    "defaultCanHandle": "BY_DEFAULT"
+   }
+  },
+  "file": {
+   "id": "file",
+   "icon": "./images/palette/icon-file.svg",
+   "icon-alt": "icon-file",
+   "label": "file",
+   "nodeColor": "blue",
+   "position": 2,
+   "section": "core",
+   "settings": {
+    "canChangeTypeAfterCreation": true,
+    "defaultWidth": "500px"
+   }
+  },
+  "image": {
+   "id": "image",
+   "icon": "./images/palette/icon-image.svg",
+   "icon-alt": "icon-image",
+   "label": "image",
+   "nodeColor": "blue",
+   "position": 3,
+   "section": "core",
+   "settings": {
+    "canChangeTypeAfterCreation": true,
+    "defaultImageWidth": "200px",
+    "dropExtensions": [
+     "jpg",
+     "jpeg",
+     "png",
+     "svg",
+     "gif",
+     "bmp",
+     "tif"
+    ]
+   }
+  },
+  "email": {
+   "id": "email",
+   "icon": "./images/palette/icon-email.svg",
+   "icon-alt": "icon-email",
+   "label": "email",
+   "nodeColor": "blue",
+   "position": 4,
+   "section": "extra",
+   "settings": {
+    "dropPrefixes": [
+     "https://mail.notes.na.collabserv.com/verse?mode=mailread",
+     "https://outlook.office.com/mail/deeplink"
+    ]
+   }
+  },
+  "video": {
+   "id": "video",
+   "icon": "./images/palette/icon-video.svg",
+   "icon-alt": "icon-video",
+   "label": "video",
+   "nodeColor": "blue",
+   "position": 5,
+   "section": "core",
+   "settings": {
+    "canChangeTypeAfterCreation": true,
+    "defaultWidth": "280",
+    "defaultHeight": "170",
+    "autoplay": false,
+    "dropExtensions": [
+     "mov",
+     "mp4"
+    ],
+    "dropPrefixes": [
+     "http://www.youtube.",
+     "https://www.youtube."
+    ]
+   }
+  },
+  "web": {
+   "id": "web",
+   "icon": "./images/palette/icon-web.svg",
+   "icon-alt": "icon-web",
+   "label": "web page",
+   "nodeColor": "blue",
+   "position": 9,
+   "section": "core",
+   "settings": {
+    "canChangeTypeAfterCreation": true,
+    "dropPrefixes": [
+     "http://",
+     "https://"
+    ]
+   }
+  },
+  "header": {
+   "id": "header",
+   "icon": "./images/palette/icon-header.svg",
+   "icon-alt": "icon-header",
+   "label": "header",
+   "nodeColor": "grey",
+   "position": 11,
+   "section": "core",
+   "settings": {
+    "nodeClasses": [
+     "cs-node-header"
+    ],
+    "canChangeTypeAfterCreation": true,
+    "labelClasses": [
+     "cs-label-header"
+    ]
+   }
+  },
+  "todo": {
+   "id": "todo",
+   "icon": "./images/palette/icon-todo.svg",
+   "icon-alt": "icon-todo",
+   "label": "todo",
+   "nodeColor": "red",
+   "position": 12,
+   "section": "core",
+   "settings": {}
+  },
+  "json": {
+   "id": "json",
+   "icon": "./images/palette/icon-json.svg",
+   "icon-alt": "icon-json",
+   "label": "json",
+   "nodeColor": "blue",
+   "position": 13,
+   "section": "core",
+   "settings": {
+    "dropExtensions": [
+     "json"
+    ]
+   }
+  },
+  "unknown": {
+   "id": "unknown",
+   "icon": "./images/palette/icon-error.svg",
+   "icon-alt": "icon-unknown",
+   "label": "unknown",
+   "nodeColor": "red",
+   "position": 14,
+   "section": "core",
+   "settings": {}
+  }
+ }
+}

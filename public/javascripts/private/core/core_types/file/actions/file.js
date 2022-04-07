@@ -47,7 +47,7 @@ registerStandardNodeCallbacks(TYPE_NAME, cbFileProcessing);
  * @return {string}             the label for this node.
  */
 function cbLabelText(context) {
-    return context.node.getPropertyNamed('filename');
+    return context.node.getLabel() || context.node.getPropertyNamed('filename');
 }
 
 /**

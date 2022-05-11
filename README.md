@@ -5,7 +5,9 @@ between human users and machine agents.
 
 This code and the research behind it has been sponsored by the
 [DAIS ITA](https://dais-legacy.org/) (Distributed Analytics and Information Science
-International Technology Alliance) research program: `This research was sponsored by the U.S. Army Research Laboratory and the U.K. Ministry of
+International Technology Alliance) research program:
+
+`This research was sponsored by the U.S. Army Research Laboratory and the U.K. Ministry of
 Defence under Agreement Number W911NF-16-3-0001. The views and conclusions contained in this
 document are those of the authors and should not be interpreted as representing the official
 policies, either expressed or implied, of the U.S. Army Research Laboratory, the U.S.
@@ -17,6 +19,10 @@ To learn more about the environment you can refer to various short videos on You
 e.g. [this introductory video](https://www.youtube.com/watch?v=KmaheXO6D9M)
 
 # Installation
+These instructions assume that you have [git](https://git-scm.com/),
+[nodeJS and npm](https://nodejs.org/en/) installed, and have used npm to install
+[pm2](https://pm2.keymetrics.io/docs/usage/quick-start/) or similar.  The installation has been tested on Mac-OS, Linux and Windows.
+
 To run your own copy of the Cogni-sketch environment clone from the repository
 
 ```
@@ -64,10 +70,15 @@ password immediately.
 
 The 'Admin' pane appears for any user that is defined as an administrator, including the
 default `admin` user. Here you can change existing passwords, lock users or create additional
-users as needed.  When creating new users you can choose 'Initialise user' to copy the
-palettes and projects defined in the `/examples/example_palettes` and
-`/examples/example_projects` folders.  If you change or add to these folders then you changes
-will be included with any future 'Initialise user' actions that you perform.
+users as needed.
+
+Don't forget when creating new users you should choose 'Initialise user' to copy the palettes and
+projects defined in the `/examples/example_palettes` and `/examples/example_projects` folders.
+
+If you don't initialise the user then when that user logs in they will have no projects and no palettes and will receive an error message until one or more are created.
+
+If you change or add to these folders then your changes will be included with any future
+'Initialise user' actions that you perform.
 
 You are now ready to start the application. In an environment where availability is important
 it is useful to use a tool such as pm2 to run the application. You can run the server in

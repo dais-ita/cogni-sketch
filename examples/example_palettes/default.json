@@ -20,6 +20,15 @@
     "canChangeTypeAfterCreation": true,
     "defaultWidth": "500px",
     "defaultCanHandle": "BY_DEFAULT"
+   },
+   "schema": {
+    "type": "text",
+    "properties": {
+     "text": {
+      "domain": "text",
+      "type": "long text"
+     }
+    }
    }
   },
   "file": {

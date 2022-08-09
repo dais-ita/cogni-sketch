@@ -169,7 +169,7 @@ router.post('/clearActions/:proj', function(req, res) {
     }
 });
 
-router.post('/propose/:owner/:proj', function(req, res) {
+router.post('/propose/:proj', function(req, res) {
     cs.log.debug('messages.general.http', { "verb": 'POST', "label": 'proposeProject', 'extra': req.params });
 
     if (cs.security.isLoggedIn(req)) {

@@ -93,7 +93,7 @@ export function coreImport(obj) {
         obj.uid = `${obj.uid}_duplicate`;
     }
 
-    result = getProject()._addRawNode(obj, getPalette().getItemById(obj.type), obj.userName);
+    result = getProject()._addRawNode(obj, getPalette().getItemById(obj.type) || getPalette().getDefaultItem(), obj.userName);
 
     if (obj.hide) {
         hideNodeAndLinks(existing);

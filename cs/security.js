@@ -97,8 +97,7 @@ function findGhostUsers(users) {
           }
         }
     } catch (e) {
-        //TODO: Abstract this message
-        log.error(`Error reading folder '${SAVES_FN}'`, e);
+        log.error('messages.security.no_folder', { "folder": SAVES_FN });
     }
 }
 

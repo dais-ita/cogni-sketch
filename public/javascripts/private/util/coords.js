@@ -481,7 +481,7 @@ export function computePathBetween(srcNode, bender, tgtNode) {
         endPos = tgtNode.getPos();
 
         // In case the node has been saved with no position, use 0,0 as the default
-        if (!endPos || !endPos.x || !endPos.y) {
+        if (!endPos || (!endPos.x && endPos.x !== 0) || (!endPos.y && endPos.y !== 0)) {
             endPos = { "x": 0, "y": 0 };
         }
     } else {

@@ -84,17 +84,18 @@ router.post('/save/:proj', function(req, res) {
                 newPerms.push(perm);
             }
 
+            result.message = 'permissions updated';
+
             //Now save the permissions file
+            const fn = csp.getRootPath() + PERM_FN;
+
             try {
-                const fn = csp.getRootPath() + PERM_FN;
                 fs.writeFileSync(fn, JSON.stringify(newPerms, null, 1));
             } catch(e) {
-                log.error('Error writing to permissions file');
-                log.error(e);
+                log.error('messages.routes.permissions', { "fileName": fn }, e);
+                result.message = 'permissions update failed';
             }
         }
-
-        result.message = 'permissions updated';
 
         cs.response.returnJson(res, result);
     } else {

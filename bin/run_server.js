@@ -27,6 +27,7 @@
 const cs = require('../cs/cs')(performServerStart); // The method is called when initialisation is complete.
 const app = require('../app');
 const http = require('http');
+const log = require("../cs/log");
 
 let port;
 
@@ -69,11 +70,11 @@ function onError(error) {
     // handle specific listen errors with friendly messages
     switch (error.code) {
         case 'EACCES':
-            cs.log.error(`${port} requires elevated privileges`);
+            log.error('messages.server.needs_privileges', { "port": port });
             process.exit(1);
             break;
         case 'EADDRINUSE':
-            cs.log.error(`${port} is already in use`);
+            log.error('messages.server.in_use', { "port": port });
             process.exit(1);
             break;
         default:
@@ -90,7 +91,7 @@ function onListening(server) {
     const address = server.address();
 
     if (address && address.port) {
-        cs.log.debug('messages.general.server_listening', { "port": address.port });
+        cs.log.debug('messages.server.listening', { "port": address.port });
     }
 }
 

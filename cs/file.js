@@ -103,7 +103,11 @@ function saveAction(req) {
 
 function createFolderIfMissing(folder) {
     if (!fs.existsSync(folder)){
-        fs.mkdirSync(folder);
+        try {
+            fs.mkdirSync(folder);
+        } catch (err) {
+            log.error('messages.file.create_folder_error', { "folderName": folder });
+        }
     }
 }
 

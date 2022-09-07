@@ -58,8 +58,8 @@ function initialize(localeName, cbFunc) {
 
     i18next.on('failedLoading', function (lng, ns, msg) {
         // This message is hardcoded as the internationalization failed to load.
-        log.error(`Failed to load locale text: language='${lng}', namespace='${ns}'`);
-        log.error(msg);
+        console.error(`Failed to load locale text: language='${lng}', namespace='${ns}'`);
+        console.error(msg);
     })
     i18next.on('loaded', function () {
         log.debug('messages.general.internationalization_loaded');

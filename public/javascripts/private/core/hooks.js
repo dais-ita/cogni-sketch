@@ -265,7 +265,7 @@ export function doRefreshNode(tgtNode) {
 }
 
 function computeLayout(tgtNode, layoutText) {
-    let nodeVariables = { "label": tgtNode.getLabel(), "properties": tgtNode.listPropertyValues()};
+    let nodeVariables = { "uid": tgtNode.getUid(), "label": tgtNode.getLabel(), "properties": tgtNode.listPropertyValues()};
     let html = populateTemplate(layoutText, nodeVariables);
 
     return `<div class="cs-fo-template">${html}</div>`;
@@ -280,6 +280,7 @@ const populateTemplate = function(template, variables){
         console.error('Error applying template');
         console.error(template);
         console.error(variables);
+        result = '<div style="display:inline-block"><div class="alert-danger">(template error)</div></div>';
     }
 
     return result;

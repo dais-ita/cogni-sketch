@@ -56,7 +56,9 @@ export const settings = {
     /* the default value for 'debug' - can also be toggled via the main application menu by each user */
     "debug": false,
     /* whether projects should be checked for errors or inconsistencies and have these fixed on project load */
-    "cleanOnLoad": true
+    "cleanOnLoad": true,
+    // whether live checking for proposals is enabled (via polling in this version)
+    "checkForProposals": true
   },
   /* settings related to the canvas and layout of nodes and links */
   "canvas": {

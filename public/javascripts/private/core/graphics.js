@@ -741,6 +741,7 @@ function addRawForeignObjectDetails(tgtNode, content, cssClasses, width, content
     let svgDetail = getSvgDetailFrom(tgtNode, true);
     let defWidth = computeWidth(tgtNode, width);
     let html;
+    let cleanCss = tgtNode.getPropertyNamed('cleanCss');
 
     if (cssClasses) {
         html = `<div id="${contentType}_${tgtNode.getUid()}" style="width:${defWidth}" class="${cssClasses}">${content}</div>`;
@@ -752,13 +753,17 @@ function addRawForeignObjectDetails(tgtNode, content, cssClasses, width, content
         /* Exists already so just create new context and set the width*/
         svgDetail.setAttribute('width', defWidth);
         svgDetail.innerHTML = html;
-        cleanChildren(svgDetail, defWidth);
+        if (cleanCss) {
+            cleanChildren(svgDetail, defWidth);
+        }
     } else {
         let result = standardPreamble(tgtNode, defWidth);
 
         if (result['svgGroup']) {
             let newFo = svgSimpleForeignObject(result['svgGroup'], tgtNode, result['coords'], result['width'], html, allowClicks);
-            cleanChildren(newFo._groups[0][0], defWidth);
+            if (cleanCss) {
+                cleanChildren(newFo._groups[0][0], defWidth);
+            }
             storeSvgDetail(tgtNode, newFo);
         }
     }

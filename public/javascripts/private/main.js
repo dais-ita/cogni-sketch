@@ -65,6 +65,8 @@ import {
     localize
 } from "/javascripts/private/util/internationalization.js";
 
+import {eventSetProperty} from "/javascripts/private/core/core_panes/canvas/events/triggered.js";
+
 const COOKIE_USERNAME = 'userName';
 
 /* the url that is used to request all plugin details for this application */
@@ -84,6 +86,9 @@ let scriptOrderedList;
  */
 window.onload = function() {
     initialise(getSessionDebug());
+
+    //TODO: Add more events here when defined
+    document.eventSetProperty = eventSetProperty;
 };
 
 /**

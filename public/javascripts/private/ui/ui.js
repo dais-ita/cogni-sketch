@@ -45,8 +45,9 @@ import {
 import {getCurrentViewBox} from "/javascripts/private/util/coords.js";
 import {initialise as d3Initialise} from "/javascripts/private/core/d3.js";
 import {initialise as keyboardInitialise} from "/javascripts/private/ui/window/keyboard.js";
-// import {executeFunctionAfterDelay} from "../util/timing.js";
-// import {listProjectProposals} from "/javascripts/private/ui/project/project.js";
+import {executeFunctionAfterDelay} from "../util/timing.js";
+import {listProjectProposals} from "/javascripts/private/ui/project/project.js";
+import {settings} from "/javascripts/private/core/core_settings.js";
 
 export function initialise() {
     initToasts();
@@ -209,10 +210,11 @@ export function finishedLoad() {
 
 function startProposalPolling() {
     //TODO: Replace this with websockets
-    //TODO: Add this back in when needed
-    // listProjectProposals();
-    //
-    // executeFunctionAfterDelay(startProposalPolling, 2000)
+    if (settings.project.checkForProposals) {
+        listProjectProposals();
+
+        executeFunctionAfterDelay(startProposalPolling, 2000)
+    }
 }
 
 export function clearPanes() {

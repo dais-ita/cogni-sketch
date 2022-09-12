@@ -113,7 +113,7 @@ router.post('/add/:user', function(req, res) {
             let userName = req.params['user'];
             let password = req.query['password'];
 
-            result = cs.security.addUser(userName, password);
+            result = cs.security.addUser(userName, password, false);
         } else {
             result = { "error": 'Not authorised' };
         }
@@ -222,23 +222,49 @@ router.post('/initialise/:user', function(req, res) {
     }
 });
 
-router.post('/password/:user', function(req, res) {
+router.post('/changePassword/', function(req, res) {
     cs.log.debug('messages.general.http', { "verb": 'POST', "label": 'changePassword' });
 
     if (cs.security.isLoggedIn(req)) {
-        let result;
+        let userName = req.body['userName'];
 
         if (cs.security.isAdmin(req)) {
-            let userName = req.params['user'];
-            let password = req.query['password'];
-
-            result = cs.security.changePassword(userName, password);
+            //Admin can change without existing password
+            let result = cs.security.changePassword(userName, req.body['newPassword']);
 
             res.send(result);
         } else {
-            res.sendStatus(401);
-        }
+            if (csp.userName(req) === userName) {
+                //User can change own password but must know the existing one
 
+                let result = cs.security.checkPassword(userName, req.body['oldPassword']);
+
+                if (result) {
+                    result = cs.security.changePassword(userName, req.body['newPassword']);
+                    res.send(result);
+                } else {
+                    res.send({"error": 'Incorrect existing password'});
+                }
+            } else {
+                res.sendStatus(401);
+            }
+        }
+    } else {
+        res.sendStatus(401);
+    }
+});
+
+router.post('/checkPassword/', function(req, res) {
+    cs.log.debug('messages.general.http', { "verb": 'POST', "label": 'checkPassword' });
+
+    if (cs.security.isLoggedIn(req)) {
+        let result = cs.security.checkPassword(req.body['userName'], req.body['password']);
+
+        if (result) {
+            res.send(result);
+        } else {
+            res.send({ "error": 'Invalid password'} );
+        }
     } else {
         res.sendStatus(401);
     }

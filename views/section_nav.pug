@@ -95,10 +95,15 @@ nav.navbar.navbar-expand-md.navbar-light.bg-light#csNavbar
 
     //Nav: User
     div.navbar-nav.ml-auto
-        ul.navbar-nav
-            li.nav-item
-                a.nav-link(href="#")
-                    - var userTitle = "Logged is as " + user;
-                    img#cs-user-icon(src="./images/cs/icon-user-good.png", width="50", height="50", title=userTitle)
-            li.nav-item.mt-3
-                a.nav-link(href="./logout") Logout
+        div.collapse.navbar-collapse
+            ul.navbar-nav
+                li.nav-item.dropdown
+                    a.nav-link.dropdown-toggle.active#cs-navbar-app(role="button", data-toggle="dropdown", aria-haspopup="true", aria-expanded="false")
+                        - var userTitle = "Logged is as " + user;
+                        img#cs-user-icon(src="./images/cs/icon-user-good.png", width="50", height="50", title=userTitle)
+                    div.dropdown-menu.dropdown-menu-right(aria-labelledby="cs-navbar-app")#cs-nav-application
+                        a.dropdown-item.disabled.text-info Welcome #{user}
+                        div.dropdown-divider
+                        a.dropdown-item#cs-change-password Change password
+                        div.dropdown-divider
+                        a.dropdown-item#cs-logout Logout

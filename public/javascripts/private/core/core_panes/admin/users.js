@@ -43,6 +43,7 @@ import {
     userConfirm
 } from "../../../../interface/log.js";
 import {formatDateTime} from "../../../../interface/util.js";
+import {actionChangePassword} from "/javascripts/private/ui/user.js";
 
 const ELEM_CS_MAIN = 'cs-admin-row-users';
 const ELEM_COUNT = 'cs-users-count';
@@ -68,7 +69,6 @@ const URL_LIST_USERS = '/user/list?fullDetails=true';
 const URL_USER_DETAILS = '/user/details';
 const URL_CREATE_USER = '/user/add';
 const URL_INIT_USER = '/user/initialise';
-const URL_CHANGE_PASSWORD = '/user/password';
 const URL_ENABLE_USER = '/user/enable';
 const URL_DISABLE_USER = '/user/disable';
 const URL_SET_ADMIN = '/user/setAdmin';
@@ -153,7 +153,9 @@ function createConfigForUsersSection(users) {
         config.events.push({ 'elemId': `${ELEM_PROJ_REFRESH}${user.name}`, 'event': 'click', 'function': function() { actionRefreshUserRow(user); } });
         config.events.push({ 'elemId': `${ELEM_PROJ_CLEAR}${user.name}`, 'event': 'click', 'function': function() { actionClearActions(user); } });
         config.events.push({ 'elemId': `${ELEM_PROJ_LIST}${user.name}`, 'event': 'change', 'function': function() { actionChangedProject(user); } });
-        config.events.push({ 'elemId': `${ELEM_USER_PASSWORD}${user.name}`, 'event': 'click', 'function': function() { actionChangePassword(user); } });
+        config.events.push({ 'elemId': `${ELEM_USER_PASSWORD}${user.name}`, 'event': 'click', 'function': function() {
+            actionChangePassword(user.name, { "userName": user.name, "oldPassword": 'n/a' });
+        }});
         config.events.push({ 'elemId': `${ELEM_PROJ_EXPORT}${user.name}`, 'event': 'click', 'function': function() { actionExportProject(user); } });
 
         if (user.notInitialised) {
@@ -237,28 +239,6 @@ function cbInitialiseUser(response) {
     } else {
         showToast(`User '${response.userName}' has been initialised`);
         redrawUserList();
-    }
-}
-
-function actionChangePassword(user) {
-    if (userConfirm('Are you sure you want to change the password for this user?')) {
-        let password = userPrompt('Please enter the new password for this user');
-
-        if (password) {
-            let url = `${URL_CHANGE_PASSWORD}/${user.name}?password=${password}`;
-
-            httpPost(url, cbChangePassword, '');
-        } else {
-            showToast('You did not enter a new password');
-        }
-    }
-}
-
-function cbChangePassword(response) {
-    if (response.error) {
-        showToast(`User password was not changed: ${response.error}`);
-    } else {
-        showToast('User password has been changed');
     }
 }
 

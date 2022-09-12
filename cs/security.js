@@ -211,6 +211,21 @@ function changePassword(userName, password) {
 }
 
 /**
+ * Check the password for the specified user.
+ *
+ * @param {string} userName     The name of the user (which is used to login).
+ * @param {string} password     The plaintext password, which is encrypted and stored as a bcrypt hash.
+ * @return {boolean}            Whether the specific password matched.
+ */
+function checkPassword(userName, password) {
+    let users = listUsers();
+    let user = users[userName];
+    let result = bcrypt.compareSync(password, user.password);
+
+    return result;
+}
+
+/**
  * Set the disabled user with the specified user name to be enabled.
  *
  * @param {string} userName     The name of the user.
@@ -299,6 +314,7 @@ module.exports = Object.freeze({
     "isLoggedIn": isLoggedIn,
     "listUsers": listUsers,
     "addUser": addUser,
+    "checkPassword": checkPassword,
     "changePassword": changePassword,
     "enableUser": enableUser,
     "disableUser": disableUser,

@@ -30,6 +30,9 @@ import {
     clearSearchResult,
     initialise as initialiseSearch
 } from "/javascripts/private/ui/search.js";
+import {
+    initialise as initialiseUser
+} from "/javascripts/private/ui/user.js";
 import {initialise as initialiseTabs} from "/javascripts/private/ui/tabs.js";
 import {initialise as initialiseTypes} from "/javascripts/private/ui/palette/types.js";
 import {initialise as initialiseProject} from "/javascripts/private/ui/project/project.js";
@@ -53,6 +56,7 @@ export function initialise() {
     initToasts();
     initialiseWindow();
     initialiseSearch();
+    initialiseUser();
     initialiseTabs();
     initialiseTypes();
     initialiseProject();

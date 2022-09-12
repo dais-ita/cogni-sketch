@@ -264,20 +264,20 @@ function passportCredentials(strategyName, username, password, done) {
 
                 if (res) {
                     //success - return user
-                    result = done(null, { "name": username, "id": username});
+                    result = done(null, { "name": lcu, "id": lcu});
                 } else {
                     //failure - invalid password
-                    let msgText = cs.log.warn('messages.security.invalid_password', { "userId": username });
+                    let msgText = cs.log.warn('messages.security.invalid_password', { "userId": lcu });
                     result = done(null, false, { "message": msgText });
                 }
             } else {
                 //failure - disabled user
-                let msgText = cs.log.warn('messages.security.account_disabled', { "userId": username });
+                let msgText = cs.log.warn('messages.security.account_disabled', { "userId": lcu });
                 result = done(null, false, { "message": msgText });
             }
         } else {
             //failure - invalid user
-            let msgText = cs.log.debug('messages.security.user_invalid', { "userId": username });
+            let msgText = cs.log.debug('messages.security.user_invalid', { "userId": lcu });
             result = done(null, false, { "message":  msgText });
         }
     }

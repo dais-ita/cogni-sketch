@@ -199,7 +199,7 @@ function actionCreateUser() {
             let password = userPrompt('Please enter the password for this user');
 
             if (password) {
-                let url = `${URL_CREATE_USER}/${userName}?password=${password}`;
+                let url = `${URL_CREATE_USER}/${userName.toLowerCase()}?password=${password}`;
                 httpPost(url, cbCreateUser, '');
             } else {
                 showToast('You must enter a password to create a user');

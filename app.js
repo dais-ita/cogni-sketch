@@ -33,7 +33,6 @@ const plugins = require('./plugins');
 const generalCredentials = require('./creds');
 
 // From npm
-const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
@@ -128,7 +127,6 @@ function csDefineCoreRoutes() {
     app.use('/project', prRouter);
     app.use('/file', fRouter);
     app.use('/image', imRouter);
-    app.use('/images', imRouter);    //Kept in for legacy reasons - old projects saved prior to refactoring
     app.use('/function', fnRouter);
     app.use('/http', hRouter);
     app.use('/permission', peRouter);
@@ -286,10 +284,10 @@ function passportCredentials(strategyName, username, password, done) {
 }
 
 function csDefineErrors() {
-    // Catch 404 and forward to error handler
+    // Catch 404
     app.use(function(req, res, next) {
         console.error(`404 url: ${req.originalUrl}`); //TODO: Report this properly
-        next(createError(404));
+        res.sendStatus(404);
     });
 }
 

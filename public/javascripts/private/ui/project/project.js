@@ -57,6 +57,7 @@ import {
     drawFullNode,
     drawLinkWhole,
     drawSpecialNode,
+    hideNodeAndLinks,
     showOrHideNodeOrLink
 } from "/javascripts/private/core/graphics.js";
 import {refreshNode} from "/javascripts/interface/data.js";
@@ -232,18 +233,20 @@ function addNodesToCanvas(nodeList, userName, ts) {
         let newObj = coreNodeImport(obj);
 
         if (newObj) {
-            if (!newObj.isHidden()) {
-                if (newObj.isEmpty()) {
-                    drawEmptyNode(newObj);
-                } else if (newObj.isFull()) {
-                    drawFullNode(newObj);
-                } else if (newObj.isSpecial()) {
-                    drawSpecialNode(newObj);
-                } else {
-                    error(`Unexpected mode '${newObj.getTypeName()}' for node ${newObj.getUid()}`);
-                }
+            if (newObj.isEmpty()) {
+                drawEmptyNode(newObj);
+            } else if (newObj.isFull()) {
+                drawFullNode(newObj);
+            } else if (newObj.isSpecial()) {
+                drawSpecialNode(newObj);
+            } else {
+                error(`Unexpected mode '${newObj.getTypeName()}' for node ${newObj.getUid()}`);
+            }
 
-                refreshNode(newObj);
+            refreshNode(newObj);
+
+            if (newObj.isHidden()) {
+                hideNodeAndLinks(newObj);
             }
         }
     }

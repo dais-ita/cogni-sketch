@@ -95,10 +95,6 @@ export function coreImport(obj) {
 
     result = getProject()._addRawNode(obj, getPalette().getItemById(obj.type) || getPalette().getDefaultItem(), obj.userName);
 
-    if (obj.hide) {
-        hideNodeAndLinks(existing);
-    }
-
     return result;
 }
 

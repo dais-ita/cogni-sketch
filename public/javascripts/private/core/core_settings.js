@@ -58,7 +58,9 @@ export const settings = {
     /* whether projects should be checked for errors or inconsistencies and have these fixed on project load */
     "cleanOnLoad": true,
     // whether live checking for proposals is enabled (via polling in this version)
-    "checkForProposals": true
+    "checkForProposals": false,
+    // the frequency (in milliseconds) of polling for proposals
+    "proposalPollFrequency": 2000
   },
   /* settings related to the canvas and layout of nodes and links */
   "canvas": {

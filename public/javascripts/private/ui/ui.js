@@ -217,7 +217,7 @@ function startProposalPolling() {
     if (settings.project.checkForProposals) {
         listProjectProposals();
 
-        executeFunctionAfterDelay(startProposalPolling, 2000)
+        executeFunctionAfterDelay(startProposalPolling, settings.project.proposalPollFrequency)
     }
 }
 

@@ -76,8 +76,6 @@ export function actionChangePassword(userName, params) {
 }
 
 function cbCheckPassword(response, params) {
-    console.log(response);
-
     if (response.error) {
         showToast(`You did not enter the correct existing password for ${response.userName}`);
     } else {

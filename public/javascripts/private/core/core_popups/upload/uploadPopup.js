@@ -124,8 +124,6 @@ function actionFilesChanged() {
     // $('.custom-file-input').on('change', function() {
     //     let labelText;
     //
-    //     console.log('xxx');
-    //
     //     for (let thisFile of this.files) {
     //         if (labelText) {
     //             labelText += `, ${thisFile.name}`;
@@ -151,8 +149,6 @@ function legacyEvents() {
     //Update the label whenever the selection changes
     $('.custom-file-input').on('change', function() {
         let labelText;
-
-        console.log('xxx');
 
         for (let thisFile of this.files) {
             if (labelText) {

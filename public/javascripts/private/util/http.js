@@ -78,10 +78,6 @@ export function httpGet(url, callback, params, quiet, errMsg, contentType) {
         }
     };
 
-    // http.addEventListener('progress', event => {
-    //     console.log(event.loaded, event.target.response.length);
-    // });
-
     http.onerror = function(httpError) {
         let msg = errMsg || localize('messages.http.GET', { "url": url });
 

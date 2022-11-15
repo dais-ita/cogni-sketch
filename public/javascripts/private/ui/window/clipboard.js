@@ -223,7 +223,7 @@ function sendPasteImageToTab(rdr, imgFilename, imgUrl) {
 export function calculateImageUrl(uid) {
     let pn = getProject().getName();
 
-    return `./images/${pn}/${uid}`;
+    return `./image/${pn}/${uid}`;
 }
 
 /**

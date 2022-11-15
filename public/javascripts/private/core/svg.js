@@ -76,6 +76,7 @@ export function svgNodeIconImage(parent, tgtNode, layout, iconUrl) {
         .append('image')
         .attr('id', tgtNode.getUid())
         .attr('href', iconUrl)
+        .attr('onerror', 'this.onerror=null; this.setAttribute("href", "/images/palette/icon-error.svg");')
         .attr('x', tgtNode.getPos().x - computeIconOffset(tgtNode, layout))
         .attr('y', tgtNode.getPos().y - computeIconOffset(tgtNode, layout))
         .attr('width', computeIconSize(tgtNode, layout))

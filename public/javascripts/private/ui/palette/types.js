@@ -626,6 +626,7 @@ function addPaletteItem(item, ul) {
     oImg.setAttribute('src', item.getIcon().icon);
     oImg.setAttribute('alt', item.getIcon().iconAlt);
     oImg.setAttribute('draggable', 'false');
+    oImg.setAttribute('onerror', 'this.onerror=null; this.src="/images/palette/icon-error.svg"');
     oImg.className = 'cs-palette-icon';
 
     li.appendChild(oImg);

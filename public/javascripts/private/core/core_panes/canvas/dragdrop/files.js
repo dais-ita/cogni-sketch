@@ -79,7 +79,6 @@ export function dropRawFiles(e, tgtNode) {
     let thisNode = tgtNode;     /* set to new variable so it can be cleared after the first iteration if multiple files */
 
     for (let file of e.dataTransfer.files) {
-        console.log(file);
         if (isImageFile(file, thisNode)) {
             saveActionMisc('drop:imageFile', null, { "fileName": file.name });
             uploadImageFile(file, thisNode);
@@ -158,7 +157,7 @@ function uploadImageFile(file, tgtNode) {
             nodeUid = tgtNode.getUid();
         }
 
-        let imgUrl = `./images/${getProject().getName()}/${file.name}`;
+        let imgUrl = `./image/${getProject().getName()}/${file.name}`;
         let params = { "existingUid": nodeUid, "uid": file.name, "mousePos": mousePos, "imgUrl": imgUrl };
         let payload = { "data": convertArrayBufferToBase64(contents), "imageName": file.name, "project": getProject().getName() };
 

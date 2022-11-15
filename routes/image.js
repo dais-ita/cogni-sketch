@@ -32,13 +32,6 @@ const csp = require('../cs/cs_private');
 const express = require('express');
 const router = express.Router();
 
-// router.get('/get/:proj/:image', function(req, res, next) {
-//     cs.log.debug('messages.general.http', { "verb": 'GET', "label": 'getImage [legacy]', 'extra': req.params });
-//
-//     //TODO: Remove this when old sketch projects migrated
-//     doGetImageProcessing(req, res, next);
-// });
-
 /**
  * Identify the filename for the image that is required and, if the image is owned by someone else, check permissions
  * and return the image file contents if authorised.

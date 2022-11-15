@@ -132,6 +132,11 @@ function testForNonLocalImages(tgtNode) {
     if (isImage(tgtNode)) {
         let url = tgtNode.getPropertyNamed('url');
 
+        if (url && (url.indexOf('./image/') === 0) && (url.indexOf('./image/' + getProject().getName()) !== 0)) {
+            error(`Non-local for node ${tgtNode.getUid()}, url: ${url}`);
+        }
+
+        //TODO: Remove this legacy image file path
         if (url && (url.indexOf('./images/') === 0) && (url.indexOf('./images/' + getProject().getName()) !== 0)) {
             error(`Non-local for node ${tgtNode.getUid()}, url: ${url}`);
         }

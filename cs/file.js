@@ -68,7 +68,7 @@ function getFileFilenameFor(req, fName) {
  */
 function getImageFilename(req) {
     let userPath = csp.getUserOrOwnerPath(req);
-    let imageFolder = path.join(userPath, csp.projectName(req), 'images')
+    let imageFolder = path.join(userPath, csp.projectName(req), 'image');
 
     createFolderIfMissing(imageFolder);
 
@@ -487,7 +487,7 @@ function saveCopyOfImage(req) {
     let obj = req.body;
     let projName = req.body.project;
     let projFolder = csp.getProjectPath(req, projName);
-    let imagesFolder = path.join(projFolder, 'images')
+    let imagesFolder = path.join(projFolder, 'imagess');
 
     createFolderIfMissing(imagesFolder);
 

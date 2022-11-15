@@ -592,8 +592,8 @@ function fixLegacyIssues() {
         if (obj.rawData) {
             if (obj.rawData.startsWith('./images')) {
                 //Fix the issue with old image paths.  Prior to v264 these were ./images/* but have
-                //been migrated to ./image/get/*
-                obj.rawData = obj.rawData.replace('./images/', './image/get/');
+                //been migrated to ./image/* (singular rather than plural)
+                obj.rawData = obj.rawData.replace('./images/', './image/');
 
                 ++legacyImage;
             }

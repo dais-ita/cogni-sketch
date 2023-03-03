@@ -98,6 +98,7 @@ import {
 import {refresh as refreshCanvas} from "/javascripts/private/core/core_panes/canvas/canvas.js";
 import {saveActionMisc} from "/javascripts/private/csData/change/csDataChanges.js";
 import {settings} from "/javascripts/private/core/core_settings.js";
+import {openUpload} from "/javascripts/private/core/core_popups/upload/uploadPopup.js";
 
 let FIELD_NAME = 'item-name';
 let FIELD_SECTION = 'section';
@@ -121,6 +122,7 @@ let FIELD_CUSTOM_COLOR = 'custom-color';
 let FIELD_CUSTOM_TIP = 'custom-tip';
 let FIELD_ICON = 'icon';
 let FIELD_SAMPLE = 'sample';
+let FIELD_UPLOAD = 'upload';
 //let FIELD_PROPS_INH = 'props-inherited';
 let FIELD_PROPS_DOM = 'props-domain';
 let FIELD_PROPS_NEW = 'props-new';
@@ -1001,6 +1003,17 @@ function buildMainSection(parent, nodeType) {
     buildIconFields(parent);
     let samp = createDiv(parent, FIELD_SAMPLE);
     samp.style.display = 'inline';
+    samp.style["margin-left"] = '10px';
+
+    let upload = createDiv(parent, FIELD_UPLOAD)
+    upload.style.display = 'inline';
+    upload.style["margin-left"] = '10px';
+
+    let uploadElem = document.createElement('SPAN');
+    uploadElem.innerHTML = `&nbsp;&nbsp;&nbsp;<img id="upload-icon" class="cs-button2" src="./images/cs/icon-edit.svg" alt="Upload a new palette icon" title="Upload a new palette icon">`;
+
+    parent.appendChild(uploadElem);
+    uploadElem.addEventListener('click', function() { actionUploadIcon(); });
 
     createBr(parent);
 }
@@ -1046,7 +1059,12 @@ function buildIconFields(parent) {
     requestAndPopulateIcons();
 }
 
-function requestAndPopulateIcons() {
+function actionUploadIcon() {
+    //Open the file upload popup
+    openUpload(true);
+}
+
+export function requestAndPopulateIcons() {
     httpGet(URL_LIST_ICONS, callbackListIcons);
 }
 

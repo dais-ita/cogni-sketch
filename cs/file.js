@@ -406,6 +406,42 @@ function uploadFile(req) {
 }
 
 /**
+ * Upload one or more icon files to the generic palette icons folder.
+ *
+ * @param {e.Request} req       The http request object.
+ * @return {object}             The list of all file names that have been uploaded
+ */
+function uploadIcon(req) {
+    let result = {
+        "message": '',
+        "filenames": [],
+        "errors": []
+    };
+
+    if (!req.files) {
+        result.message = log.localize('messages.file.no_files');
+    } else {
+        let list = req.files[PARAM_FILES];
+
+        if (Array.isArray(list)) {
+            for (let thisFile of list) {
+                saveUploadedIconFile(req, thisFile, result);
+            }
+        } else {
+            saveUploadedIconFile(req, list, result);
+        }
+
+        result.message = log.localize('messages.file.uploaded', { "count": result.filenames.length });
+
+        if (result.errors.length > 0) {
+            result.message += log.localize('messages.file.failed', { "count": result.errors.length });
+        }
+    }
+
+    return result;
+}
+
+/**
  * Return a list of all the filenames for the specified project.
  *
  * @param {e.Request} req       The http request object.
@@ -463,6 +499,29 @@ function saveUploadedFile(req, file, result) {
     let filesFolder = path.join(projFolder, 'files')
 
     createFolderIfMissing(filesFolder);
+
+    let fileName = path.join(filesFolder, file.name);
+
+    log.debug('messages.file.saved_file', { "fileName": fileName });
+
+    try {
+        fs.writeFileSync(fileName, file.data, 'base64');
+        result.filenames.push(file.name);
+    } catch (e) {
+        log.error('messages.file.save_file_error', { "fileName": fileName}, e);
+        result.errors.push(file.name);
+    }
+}
+
+/**
+ * Save the binary content of the specified icon file object to a file within the global 'palette' icon folder.
+ *
+ * @param {e.Request} req       The http request object.
+ * @param {File} file           The binary contents of the file to be saved.
+ * @param {object} result       An existing result object to which the name of the saved file is added.
+ */
+function saveUploadedIconFile(req, file, result) {
+    let filesFolder = path.join(csp.getRootPath(), 'public', 'images', 'palette');
 
     let fileName = path.join(filesFolder, file.name);
 
@@ -570,5 +629,6 @@ module.exports = Object.freeze({
     "listActions": listActions,
     "clearActions": clearActions,
     "upload": uploadFile,
+    "uploadIcon": uploadIcon,
     "listAllFiles": listAllFiles
 });

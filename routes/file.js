@@ -83,6 +83,21 @@ router.post('/upload', function(req, res) {
 });
 
 /**
+ * Upload the binary contents of this POST request, returning the file name that was used in the response.
+ */
+router.post('/upload-icon', function(req, res) {
+    cs.log.debug('messages.general.http', { "verb": 'POST', "label": 'uploadFile' });
+
+    if (cs.security.isLoggedIn(req)) {
+        const result = cs.file.uploadIcon(req);
+
+        cs.response.returnJson(res, result);
+    } else {
+        res.sendStatus(401);
+    }
+});
+
+/**
  * Save the binary data in the POST request to the specified file name.
  */
 router.post('/save', function(req, res) {

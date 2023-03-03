@@ -28,7 +28,7 @@
  * @type {string}   the main template for this popup window.
  */
 export const mainTemplate = `
-<div id="popup-form" class="modal cs-modal-overflow py-0 px-2">
+<div id="{{formName}}" class="modal cs-modal-overflow py-0 px-2">
     <form enctype="multipart/form-data" action="/file/upload" method="POST">
         <div class="input-group">
             <div class=" my-3">
@@ -37,8 +37,8 @@ export const mainTemplate = `
             <label class="custom-file-label" for="input-chooser">Choose file</label>
         </div>
     </form>
-    <div id="popup-info" class="alert-info my-3 p-2 d-none"></div>
-    <button id="button-submit" class="button btn btn-block btn-secondary">Upload</button>
-    <button id="button-cancel" class="button btn btn-block btn-secondary cs-btn-close">Close</button>
+    <div id="popup-info-upload" class="alert-info my-3 p-2 d-none"></div>
+    <button id="button-upload-submit" class="button btn btn-block btn-secondary">Upload</button>
+    <button id="button-upload-cancel" class="button btn btn-block btn-secondary cs-btn-close">Close</button>
 </div>
 `;

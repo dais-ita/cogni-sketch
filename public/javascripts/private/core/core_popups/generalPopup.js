@@ -58,6 +58,15 @@ export function isPopupOpen() {
 }
 
 /**
+ * Return true if there is a popup modal window open.
+ *
+ * @return {boolean}    whether there is a popup modal window open.
+ */
+export function isSecondaryPopupOpen() {
+    return !!getSecondModalObject();
+}
+
+/**
  * Get the modal object (on which the currently open popup window is focused).
  *
  * @return {*}      the modal object.
@@ -156,7 +165,6 @@ export function showPopup(modalObj, formName, isSecond) {
     }
 
     //TODO: Delete this when migration complete
-
     $('#' + formName || FORM_NAME).modal({ backdrop: 'static' });
 }
 

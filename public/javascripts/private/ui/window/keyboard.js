@@ -25,7 +25,9 @@
 
 import {
     closePopup,
-    isPopupOpen
+    closeSecondPopup,
+    isPopupOpen,
+    isSecondaryPopupOpen
 } from "/javascripts/private/core/core_popups/generalPopup.js";
 import {activeTabName} from "/javascripts/private/ui/tabs.js";
 import {getPane} from "/javascripts/private/csData/csDataComponents.js";
@@ -44,7 +46,11 @@ export function initialise() {
  * @param {KeyboardEvent} ev     the keyup event
  */
 function keyup(ev) {
-    if (isPopupOpen()) {
+    if (isSecondaryPopupOpen()) {
+        if (ev.key === 'Escape') {
+            closeSecondPopup();
+        }
+    } else if (isPopupOpen()) {
         if (ev.key === 'Escape') {
             closePopup();
         }

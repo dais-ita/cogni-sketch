@@ -25,27 +25,36 @@
  **/
 
 import {getProject} from "/javascripts/private/state.js";
-import {initialise as initialiseFiles} from "/javascripts/private/ui/palette/files.js";
+import {requestAndPopulateIcons} from "/javascripts/private/core/core_popups/typePopup.js";
 import {mainTemplate} from "./templates/uploadTemplates.js";
 import {
     closePopup as actionClosePopup,
-    popupFrom
+    closeSecondPopup as actionCloseSecondPopup,
+    popupFrom,
+    popupSecondFrom
 } from "/javascripts/private/core/core_popups/generalPopup.js";
 import {saveActionMisc} from "/javascripts/private/csData/change/csDataChanges.js";
 
 const ELEM_CHOOSER = 'input-chooser';
-const ELEM_INFO = 'popup-info';
-const ELEM_BUTTON_UPLOAD = 'button-submit';
-const ELEM_BUTTON_CANCEL = 'button-cancel';
+const ELEM_INFO = 'popup-info-upload';
+const ELEM_BUTTON_UPLOAD = 'button-upload-submit';
+const ELEM_BUTTON_CANCEL = 'button-upload-cancel';
+
+let iconMode = false;
 
 /**
  * Open the file upload window.
  */
-export function openUpload() {
-    let config = calculateImportConfig();
+export function openUpload(isSecond) {
+    let config = calculateImportConfig(isSecond);
     legacyEvents();
 
-    popupFrom('upload', mainTemplate, config);
+    if (isSecond) {
+        popupSecondFrom('upload', mainTemplate, config);
+        iconMode = true;
+    } else {
+        popupFrom('upload', mainTemplate, config);
+    }
 }
 
 /**
@@ -53,15 +62,32 @@ export function openUpload() {
  *
  * @return {csTemplateConfig}       the template configuration.
  */
-function calculateImportConfig() {
-    let config = {
+function calculateImportConfig(isSecond) {
+    let config;
+    let formName;
+
+    if (isSecond) {
+        formName = 'popup-form-2';
+    } else {
+        formName = 'popup-form';
+    }
+
+    config = {
         'modalFocus': ELEM_BUTTON_UPLOAD,
-        'html': {},
+        'html': {
+            'formName': formName
+        },
         'events': []
     };
 
     config.events.push({ 'elemId': ELEM_BUTTON_UPLOAD, 'event': 'click', 'function': actionDoUpload });
-    config.events.push({ 'elemId': ELEM_BUTTON_CANCEL, 'event': 'click', 'function': function() { actionClosePopup(); } });
+
+    if (isSecond) {
+        config.events.push({ 'elemId': ELEM_BUTTON_CANCEL, 'event': 'click', 'function': function() { actionCloseSecondPopup(); } });
+    } else {
+        config.events.push({ 'elemId': ELEM_BUTTON_CANCEL, 'event': 'click', 'function': function() { actionClosePopup(); } });
+    }
+
     config.events.push({ 'elemId': 'input-chooser', 'event': 'change', 'function': function() { actionFilesChanged(); } });
 
     return config;
@@ -74,6 +100,13 @@ function actionDoUpload() {
     const chosenFiles = document.getElementById(ELEM_CHOOSER).files;
     const formData = new FormData();
     let fileNames = [];
+    let uploadUrl;
+
+    if (iconMode) {
+        uploadUrl = '/file/upload-icon';
+    } else {
+        uploadUrl = '/file/upload';
+    }
 
     for (let thisFile of chosenFiles) {
         formData.append('files[]', thisFile);
@@ -85,14 +118,14 @@ function actionDoUpload() {
     saveActionMisc('files:upload', null, { "fileNames": fileNames });
 
     $.ajax({
-        url: '/file/upload',
+        url: uploadUrl,
         data: formData,
         type: 'POST',
         processData: false,
         contentType: false,
         success: function(data) {
             writeInfoMessage(`${data.message}<br>(${data.filenames})`);
-            initialiseFiles();
+            requestAndPopulateIcons();
         }
     });
 }
@@ -118,22 +151,6 @@ function actionFilesChanged() {
             writeInfoMessage(`${count} files to be uploaded (${labelText})`);
         }
     }
-
-    // //TODO: Update this to the standard format
-    // //Update the label whenever the selection changes
-    // $('.custom-file-input').on('change', function() {
-    //     let labelText;
-    //
-    //     for (let thisFile of this.files) {
-    //         if (labelText) {
-    //             labelText += `, ${thisFile.name}`;
-    //         } else {
-    //             labelText = thisFile.name;
-    //         }
-    //     }
-    //
-    //     $('.custom-file-label').addClass('selected').html(labelText);
-    // });
 }
 
 export function writeInfoMessage(msg) {

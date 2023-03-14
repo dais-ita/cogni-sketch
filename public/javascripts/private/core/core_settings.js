@@ -45,7 +45,7 @@ export const settings = {
   /* global permission flags, to enable/disable certain application functions */
   "permissions": {
     "editSchema": true,
-    "projectPermissions": false
+    "projectPermissions": true
   },
   /* project specific setting */
   "project": {

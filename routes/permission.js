@@ -31,22 +31,18 @@ const fs = require('fs-extra');
 const express = require('express');
 const router = express.Router();
 
+const CODEPAGE = 'utf-8';
 const PERM_FN = '/data/permissions/project_permissions.json';
 
 router.get('/list/:proj/', function(req, res) {
     cs.log.debug('messages.general.http', { "verb": 'GET', "label": 'listPermissions', 'extra': req.params });
 
-    const CODEPAGE = 'utf-8';
-
     if (cs.security.isLoggedIn(req)) {
-        let proj = req.params['proj'];
         let result = [];
+        let proj = req.params['proj'];
+        let perms = readPermissions(req, CODEPAGE);
 
-        if (proj) {
-            const fn = csp.getRootPath() + PERM_FN;
-            const fc = fs.readFileSync(fn, CODEPAGE);
-            let perms = JSON.parse(fc);
-
+        if (perms) {
             for (let perm of perms) {
                 if (perm.project === proj) {
                     result.push(perm);
@@ -65,23 +61,31 @@ router.post('/save/:proj', function(req, res) {
     cs.log.debug('messages.general.http', { "verb": 'POST', "label": 'savePermissions', 'extra': req.params });
 
     if (cs.security.isLoggedIn(req)) {
-        let obj = req.body;
+        let newPerms = req.body;
         let proj = req.params['proj'];
         let result = {};
 
         if (proj) {
-            let newPerms = [];
+            let masterPerms = readPermissions(req, CODEPAGE);
+            let finalPerms = [];
 
             //First remove all existing permissions for this project
-            for (let perm of obj) {
+            for (let perm of masterPerms) {
                 if (perm['project'] !== proj) {
-                    newPerms.push(perm);
+                    finalPerms.push(perm);
                 }
             }
 
             //Now insert all submitted permissions
-            for (let perm of obj) {
-                newPerms.push(perm);
+            let uidList = [];
+
+            for (let perm of newPerms) {
+                let uid = perm.project + ':' + perm.granted;
+
+                if (uidList.indexOf(uid) === -1) {
+                    finalPerms.push(perm);
+                    uidList.push(uid);
+                }
             }
 
             result.message = 'permissions updated';
@@ -90,7 +94,7 @@ router.post('/save/:proj', function(req, res) {
             const fn = csp.getRootPath() + PERM_FN;
 
             try {
-                fs.writeFileSync(fn, JSON.stringify(newPerms, null, 1));
+                fs.writeFileSync(fn, JSON.stringify(finalPerms, null, 1));
             } catch(e) {
                 log.error('messages.routes.permissions', { "fileName": fn }, e);
                 result.message = 'permissions update failed';
@@ -102,6 +106,13 @@ router.post('/save/:proj', function(req, res) {
         res.sendStatus(401);
     }
 });
+
+function readPermissions(req, cp) {
+    const fn = csp.getRootPath() + PERM_FN;
+    const fc = fs.readFileSync(fn, cp);
+
+    return JSON.parse(fc.toString(CODEPAGE));
+}
 
 /** Module exports */
 module.exports = router;

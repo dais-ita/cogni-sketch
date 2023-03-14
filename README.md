@@ -148,7 +148,7 @@ For read-only project sharing the implementation is very simple.  Any user can g
 to read-only access) to any other user in the system.  This is achieved via the `Project
 permissions...` menu item on the project drop down menu.
 
-![/images/project_menu.png](project_menu.png)
+![project menu](./images/project_menu.png)
 
 This will open the project permissions popup window where you can add or remove user permissions
 for the current project.  Note that if you instead receive an error message stating that `Project
@@ -156,7 +156,7 @@ permissions are not currently enabled` then you must edit the `projectPermission
 `/public/javascripts/private/core/core_settings.json` and set it to `true`.  The user must then
 refresh their browser to be able to set project permissions.
 
-![/images/project_permissions.png](project_permissions.png)
+![project permissions](./images/project_permissions.png)
 
 In the example above you can see that the owner of this project has already added `user_01` as
 a collaborator with 'read' permissions, and is about to add 'user_02' with the same.
@@ -179,7 +179,7 @@ Once the owner of a project has updated and saved the user permissions, any user
 been granted access can refresh their browser to then see shared projects listed in their
 project dropdown menu.
 
-![/images/shared_project_list.png](shared_project_list.png)
+![shared project list](./images/shared_project_list.png)
 
 The entries in the list show that a project is shared and by whom.  Selecting such a project
 will allow exploration of the nodes and links and any associated properties, but no changes
@@ -300,7 +300,7 @@ properties being specified along with positional information (x, y coordinates).
 You can use a simple HTTP tool such as curl to test this in your environment, for example:
 
 ```
-curl -H "Content-Type: application/json" -X POST -d '{your JSON here}' "http://localhost:5010/project/propose/testproject?owner=user_01"
+curl -H "Content-Type: application/json" -X POST -d '{"objects": [{"uid":"proposal_obj_001", "type": "header", "mode": "empty", "expanded": 1, "selected": false, "showType": false, "hide": false, "pos": {"x": 100, "y": 100}, "linkRefs": [], "data": {"properties": {}, "label": "A new header"}},{"uid": "proposal_obj_002", "type": "text", "mode": "full", "expanded": 1, "selected": false, "showType": false, "hide": false, "pos": {"x": 500, "y": 300},"linkRefs": ["proposal_link_001"],"data":{"properties":{"text": {"type": "text", "value": "This is my test text node"}}}}], "links": [{"uid": "proposal_link_001", "selected": false, "data": {"properties": {}, "label": "test link"}, "anchorPos": 0.5, "bender": 0, "bidirectional": false, "sourceRef": "proposal_obj_001","targetRef": "proposal_obj_002"}]}' "http://admin:password@localhost:5010/project/propose/testproject?owner=user_01"
 ```
 
 Note that in the current implementation it is not possible to also upload images or files

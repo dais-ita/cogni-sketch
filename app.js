@@ -216,13 +216,14 @@ function csDefinePassport() {
     passport.serializeUser(function(user, done) { csSerializeUser(user, done); });
     passport.deserializeUser(function(id, done) { csDeserializeUser(id, done); });
 
-    app.get('/logout', function(req, res){
-        let un = csp.userName(req);
+    app.get('/logout', function(req, res) {
+        req.logout(function(err) {
+            let un = csp.userName(req);
 
-        req.logout();
-        cs.log.debug('messages.security.logged_off', { "userId":  un });
+            cs.log.debug('messages.security.logged_off', { "userId":  un });
 
-        res.redirect('/');
+            res.redirect('/');
+        });
     });
 }
 

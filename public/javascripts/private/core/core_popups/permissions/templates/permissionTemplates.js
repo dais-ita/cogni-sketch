@@ -29,7 +29,7 @@
  */
 export const mainTemplate = `
 <div id="popup-form" class="modal cs-modal-overflow py-0 px-2">
-    <div id="popup-info" class="alert-info my-3 p-2">{{infoMessage}}</div>
+    <div id="popup-info" class="alert-info my-3 p-2">{{{infoMessage}}}</div>
 
     <p>These permissions are currently granted:</p>
 
@@ -74,7 +74,7 @@ export const mainTemplate = `
     </tr>
 </table>
 
-    <button id="button-save" class="button btn btn-block btn-secondary cs-btn-default">Save Changes</button>
+    <button id="button-save" class="button btn btn-block btn-secondary cs-btn-default">Save changes</button>
     <button id="button-cancel" class="button btn btn-block btn-secondary cs-btn-close">Cancel</button>
 </div>
 `;

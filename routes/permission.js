@@ -27,11 +27,11 @@
 const cs = require('../cs/cs')();
 const csp = require('../cs/cs_private');
 const log = require('../cs/log');
+const settings = require('../settings');
 const fs = require('fs-extra');
 const express = require('express');
 const router = express.Router();
 
-const CODEPAGE = 'utf-8';
 const PERM_FN = '/data/permissions/project_permissions.json';
 
 router.get('/list/:proj/', function(req, res) {
@@ -40,7 +40,7 @@ router.get('/list/:proj/', function(req, res) {
     if (cs.security.isLoggedIn(req)) {
         let result = [];
         let proj = req.params['proj'];
-        let perms = readPermissions(req, CODEPAGE);
+        let perms = readPermissions();
 
         if (perms) {
             for (let perm of perms) {
@@ -66,7 +66,7 @@ router.post('/save/:proj', function(req, res) {
         let result = {};
 
         if (proj) {
-            let masterPerms = readPermissions(req, CODEPAGE);
+            let masterPerms = readPermissions();
             let finalPerms = [];
 
             //First remove all existing permissions for this project
@@ -107,11 +107,11 @@ router.post('/save/:proj', function(req, res) {
     }
 });
 
-function readPermissions(req, cp) {
+function readPermissions() {
     const fn = csp.getRootPath() + PERM_FN;
-    const fc = fs.readFileSync(fn, cp);
+    const fc = fs.readFileSync(fn, settings.codepage);
 
-    return JSON.parse(fc.toString(CODEPAGE));
+    return JSON.parse(fc);
 }
 
 /** Module exports */

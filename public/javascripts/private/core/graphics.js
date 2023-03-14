@@ -702,7 +702,7 @@ function isHtml(text) {
 export function putLinkAsDetail(tgtNode, url, text, width) {
     let html = `<a href="${url}" target="_blank">${text||url}</a>`;
 
-    addRawForeignObjectDetails(tgtNode, html, CSS_FO_LINK, width, 'link');
+    addRawForeignObjectDetails(tgtNode, html, CSS_FO_LINK, width, 'link', true);
     bringNodeToFront(tgtNode);
 }
 

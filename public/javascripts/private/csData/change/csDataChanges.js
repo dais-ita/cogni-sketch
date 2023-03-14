@@ -284,56 +284,58 @@ function saveAction(name, nodes, oldVal, propName, extraInfo) {
 }
 
 function doSaveAction(projectName, name, nodes, oldVal, propName, extraInfo, extraText='') {
-    //TODO: Remove this before release
 //    warn(`saveAction: ${name}${extraText}`);
+    let action;
 
-    let action = {
-        "time": new Date(),
-        "project": projectName
-    };
+    if (!getProject().isReadOnly()) {
+        action = {
+            "time": new Date(),
+            "project": projectName
+        };
 
-    if (name) {
-        action.name = name;
-    }
-
-    if (nodes) {
-        action.nodes = [];
-
-        for (let node of nodes) {
-            action.nodes.push({
-                "node": node.getUid(),      //TODO: Should this be the whole node or just the uid?
-                "pos": { "x": node.getPos().x, "y": node.getPos().y }
-            });
+        if (name) {
+            action.name = name;
         }
-    }
 
-    if (propName) {
-        action.propName = propName;
-    }
+        if (nodes) {
+            action.nodes = [];
 
-    if (extraInfo) {
-        action.extraInfo = extraInfo;
-    }
-
-    if (action.name === MOVE_NODE) {
-        if (oldVal) {
-            action.startPos = { "x": oldVal.nodeX, "y": oldVal.nodeY };
+            for (let node of nodes) {
+                action.nodes.push({
+                    "node": node.getUid(),      //TODO: Should this be the whole node or just the uid?
+                    "pos": { "x": node.getPos().x, "y": node.getPos().y }
+                });
+            }
         }
-    } else if (action.name === UPDATE_NODE) {
-        action.previousLabel = oldVal;
-        //TODO: Need to also store all the other node contents here (name/value pairs etc)
-    }
 
-    change.actionStack.push(action);
-    markAsUnsaved(name);
+        if (propName) {
+            action.propName = propName;
+        }
+
+        if (extraInfo) {
+            action.extraInfo = extraInfo;
+        }
+
+        if (action.name === MOVE_NODE) {
+            if (oldVal) {
+                action.startPos = { "x": oldVal.nodeX, "y": oldVal.nodeY };
+            }
+        } else if (action.name === UPDATE_NODE) {
+            action.previousLabel = oldVal;
+            //TODO: Need to also store all the other node contents here (name/value pairs etc)
+        }
+
+        change.actionStack.push(action);
+        markAsUnsaved(name);
 
 //    console.log(action);
-    setSessionLastAction('');
+        setSessionLastAction('');
 
-    if (getSessionProjectSaveActions()) {
-        httpPostJson(URL_SAVE_ACTION + projectName, callbackSaveAction, action);
-    } else {
-        debug('Action not saved');
+        if (getSessionProjectSaveActions()) {
+            httpPostJson(URL_SAVE_ACTION + projectName, callbackSaveAction, action);
+        } else {
+            debug('Action not saved');
+        }
     }
 
     return action;

@@ -214,5 +214,4 @@ function savePopup() {
 
 function callbackSave(response) {
     showToast('Permissions have been saved');
-    console.log(response);
 }

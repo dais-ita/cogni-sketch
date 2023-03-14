@@ -83,6 +83,7 @@ function getImageFilename(req) {
  */
 function saveAction(req) {
     let obj = req.body;
+
     obj.server_ts = Date.now();
     let actionsFolder = path.join(csp.getProjectPath(req), 'actions')
 
@@ -463,6 +464,7 @@ function listAllFiles(req) {
         const filePath = path.join(csp.getProjectPath(req, undefined, csp.ownerName(req)), 'files');
 
         createFolderIfMissing(filePath);
+
         try {
             const fList = fs.readdirSync(filePath);
 

@@ -255,32 +255,40 @@ function updateUrls(projObj, ownerName) {
  */
 function saveProject(req) {
     let obj = req.body;
-    const projFolder = path.join(csp.getUserPath(req), obj.project);
-    const fileName = path.join(projFolder, 'ObjectModel.json');
 
-    // Set the server timestamp to the time now, to indicate when it was saved
-    obj.server_ts = Date.now();
+    if (!obj.readOnly) {
+        const projFolder = path.join(csp.getUserPath(req), obj.project);
+        const fileName = path.join(projFolder, 'ObjectModel.json');
 
-    createProjectIfNeeded(projFolder);
+        console.log(req.body);
 
-    try {
-        fs.writeFileSync(fileName, JSON.stringify(obj, null, 1));
-    } catch(e) {
-        log.error('messages.project.write_error', { "fileName": fileName }, e);
-    }
+        // Set the server timestamp to the time now, to indicate when it was saved
+        obj.server_ts = Date.now();
 
-    if (settings.backup_projects) {
-        let backupsFolder = path.join(projFolder, 'backups')
-
-        createFolderIfMissing(backupsFolder);
-
-        let newFileName = path.join(backupsFolder, `${Date.now()}_ObjectModel.json`);
+        createProjectIfNeeded(projFolder);
 
         try {
-            fs.copyFileSync(fileName, newFileName);
+            fs.writeFileSync(fileName, JSON.stringify(obj, null, 1));
         } catch(e) {
-            log.error('messages.project.write_error', { "fileName": newFileName }, e);
+            log.error('messages.project.write_error', { "fileName": fileName }, e);
         }
+
+        if (settings.backup_projects) {
+            let backupsFolder = path.join(projFolder, 'backups')
+
+            createFolderIfMissing(backupsFolder);
+
+            let newFileName = path.join(backupsFolder, `${Date.now()}_ObjectModel.json`);
+
+            try {
+                fs.copyFileSync(fileName, newFileName);
+            } catch(e) {
+                log.error('messages.project.write_error', { "fileName": newFileName }, e);
+            }
+        }
+    } else {
+        obj = null;
+        log.error("Cannot save read only project");
     }
 
     return obj;

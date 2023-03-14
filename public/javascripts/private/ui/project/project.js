@@ -282,6 +282,21 @@ function callbackLoad(rawProject) {
         oldProjName = getProject().getName();
     }
 
+    // If the project is shared, ensure that all local urls or filenames are qualified with owner parameters
+    if (isSharedProject(rawProject)) {
+        for (let node of Object.values(rawProject.nodes)) {
+            if (node.data && node.data.properties) {
+                for (let [key, val] of Object.entries(node.data.properties)) {
+                    if ((key === 'filename') || (key === 'url')) {
+                        if ((val.value.indexOf('http://') !== 0) || (val.value.indexOf('https://') !== 0)) {
+                            val.value = val.value + '?owner=' +rawProject.owner;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     projectValidity(rawProject);
     let thisProject = recreateProject(rawProject);
     setProject(thisProject);
@@ -297,6 +312,16 @@ function callbackLoad(rawProject) {
     }
 
     showToast(`Project <b>${thisProject.getName()}</b> has been loaded`);
+}
+
+function isSharedProject(project) {
+    let result = false;
+
+    if (project.owner) {
+        result = (getSessionUserName() !== project.owner)
+    }
+
+    return result;
 }
 
 function registerEventHandlers() {

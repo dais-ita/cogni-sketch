@@ -50,9 +50,10 @@ You can do this by following the instructions for each plugin and cloning into t
 folder and creating a corresponding entry in `plugins.js` and `data/function/functions.json`
 if any functions are added as part of a plugin.
 
-A number of standard plugins can be found in the
-[DAIS ITA github organisation](https://github.com/dais-ita), with repository names starting
-`cogni-sketch-contrib-`.  Each has individual installation and setup instructions.
+A number of common plugins can be found in the
+[cogni-sketch-plugins repository](https://github.com/dais-ita/cogni-sketch-plugins).
+Each plugin is located in a specific sub-folder within that repository and has individual
+installation and setup instructions.
 
 You may wish to regularly backup the `/data` folder and all sub-folders since this is where 
 all of your user data will be created as you use the Cogni-sketch environment. If you later
@@ -148,7 +149,7 @@ For read-only project sharing the implementation is very simple.  Any user can g
 to read-only access) to any other user in the system.  This is achieved via the `Project
 permissions...` menu item on the project drop down menu.
 
-![/images/project_menu.png](project_menu.png)
+![./doc_images/project_menu.png](./doc_images/project_menu.png)
 
 This will open the project permissions popup window where you can add or remove user permissions
 for the current project.  Note that if you instead receive an error message stating that `Project
@@ -156,7 +157,7 @@ permissions are not currently enabled` then you must edit the `projectPermission
 `/public/javascripts/private/core/core_settings.json` and set it to `true`.  The user must then
 refresh their browser to be able to set project permissions.
 
-![/images/project_permissions.png](project_permissions.png)
+![./doc_images/project_permissions.png](./doc_images/project_permissions.png)
 
 In the example above you can see that the owner of this project has already added `user_01` as
 a collaborator with 'read' permissions, and is about to add 'user_02' with the same.
@@ -179,7 +180,7 @@ Once the owner of a project has updated and saved the user permissions, any user
 been granted access can refresh their browser to then see shared projects listed in their
 project dropdown menu.
 
-![/images/shared_project_list.png](shared_project_list.png)
+![./doc_images/shared_project_list.png](./doc_images/shared_project_list.png)
 
 The entries in the list show that a project is shared and by whom.  Selecting such a project
 will allow exploration of the nodes and links and any associated properties, but no changes

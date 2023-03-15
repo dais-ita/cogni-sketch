@@ -372,14 +372,12 @@ export const helpTemplate = `
   <div id="cs-help-plugins" class="row p-1">
     <div class="col-sm col-sm-12">
       <button class="badge-pill badge-primary cs-nlp-wide b-1 dropdown-toggle" type="button" data-toggle="collapse" data-target="#cs-help-collapse-plugins" aria-expanded="false" aria-controls="cs-help-collapse-plugins">
-        Core types and current plugins
+        Core palette item types
       </button>
 
       <div class="collapse p-1" id="cs-help-collapse-plugins">
         <p class="cs-help-main">
-          Listed below are the core functions and palette items, and whilst the set of plugin palette items and
-          functions is extensible, the ones listed below are currently stable and available and together form a
-          useful core starting point:
+          Listed below are the core palette item types:
         </p>
           <table class="table">
             <thead>
@@ -392,19 +390,6 @@ export const helpTemplate = `
             <tbody>
             <tr>
               <td rowspan="5"><span class="cs-help-bold">Core</span></td>
-<!--              <td>-->
-<!--                <img src="/javascripts/private/core/core_panes/help/content/images/function_factBox.png" width="150px" alt="The Factbox Extractor function">-->
-<!--              </td>-->
-<!--              <td>-->
-<!--                <p class="cs-help-main">-->
-<!--                  A simple function that attempts to create nodes and links based on simple text formatting (e.g.-->
-<!--                  tab characters) for text on an existing canvas node.  This can be used on Wikipedia fact boxes that-->
-<!--                  have been copied and pasted as new text nodes onto the canvas.  Drop the function onto the node and-->
-<!--                  any extracted links and other nodes will be created on the canvas.-->
-<!--                </p>-->
-<!--              </td>-->
-<!--            </tr>-->
-<!--            <tr>-->
               <td>
                 <img src="/javascripts/private/core/core_panes/help/content/images/item_text.png" width="150px" alt="The Text palette item">
               </td>
@@ -473,193 +458,6 @@ export const helpTemplate = `
                 </p>
               </td>
             </tr>
-<!--            <tr>-->
-<!--              <td>-->
-<!--                <img src="/javascripts/private/core/core_panes/help/content/images/function_marked.png" width="150px" alt="The Marked Entities function">-->
-<!--              </td>-->
-<!--              <td>-->
-<!--                <p class="cs-help-main">-->
-<!--                  A simple function that attempts to create nodes and links based on simple markup text used-->
-<!--                  within text nodes. This can be a fast way for creating nodes and links from existing bodies of text.-->
-<!--                  Simply mark a phrase with {} characters (e.g. "...some text here mentions that {New York City} is-->
-<!--                  the capital of {New York State}...", which will create new nodes named "New York City" and "New-->
-<!--                  York State" when this function is dropped onto that text (if nodes already exist with those names-->
-<!--                  then they will simply be linked rather than created).-->
-<!--                  You can also specify a node type to be used (e.g. "...mentions that {New York City|location}..."-->
-<!--                  will create the "New York City" node as type "location".  If no type is specified, or the type is-->
-<!--                  invalid, then the default "unknown" type is used.-->
-<!--                </p>-->
-<!--              </td>-->
-<!--            </tr>-->
-<!--            <tr>-->
-<!--              <td>-->
-<!--                <img src="/javascripts/private/core/core_panes/help/content/images/function_seek.png" width="150px" alt="The Seek Entities function">-->
-<!--              </td>-->
-<!--              <td>-->
-<!--                <p class="cs-help-main">-->
-<!--                  A simple function that seeks matches within text to existing nodes on the canvas.  Drop the-->
-<!--                  function onto any text node and the text will be scanned, creating links to any nodes on the-->
-<!--                  canvas that are mentioned.-->
-<!--                  This function will also look for "synonym" properties on existing nodes to aid the matching.-->
-<!--                  For example in a node labelled "John F Kennedy" has a synonym property of "JFK" then this function-->
-<!--                  will propose links for mentions of "JFK" in the text.  The synonym property can be a list separated-->
-<!--                  by commas.-->
-<!--                </p>-->
-<!--              </td>-->
-<!--            </tr>-->
-<!--            <tr>-->
-<!--              <td><span class="cs-help-bold">Exif</span> (cognisketch-contrib-exif)</td>-->
-<!--              <td>-->
-<!--                <img src="/javascripts/private/core/core_panes/help/content/images/function_exif.png" width="150px" alt="The Exif Reader function">-->
-<!--              </td>-->
-<!--              <td>-->
-<!--                <p class="cs-help-main">-->
-<!--                  A function for performing Exif processing on images, to extract any embedded Exif meta-data.-->
-<!--                  Will also create location instances on the palette for any geo-location information found in-->
-<!--                  the Exif data.  Drop the function onto any image node on the canvas to perform the extraction.-->
-<!--                </p>-->
-<!--              </td>-->
-<!--            </tr>-->
-<!--            <tr>-->
-<!--              <td><span class="cs-help-bold">Language Translate</span> (cognisketch-contrib-language-translate)</td>-->
-<!--              <td>-->
-<!--                <img src="/javascripts/private/core/core_panes/help/content/images/function_translate.png" width="150px" alt="The Language Translate function">-->
-<!--              </td>-->
-<!--              <td>-->
-<!--                <p class="cs-help-main">-->
-<!--                  A function for translating from one human language to another using an externally hosted API service-->
-<!--                  (IBM Watson).  Drop the function onto a node containing text that needs to be translated and the resulting-->
-<!--                  translation will be created as a new item on the palette.-->
-<!--                </p>-->
-<!--              </td>-->
-<!--            </tr>-->
-            <tr>
-              <td><span class="cs-help-bold">Map</span> (cognisketch-contrib-map)</td>
-              <td>
-                <img src="/javascripts/private/core/core_panes/help/content/images/item_location.png" width="150px" alt="The Location palette item">
-              </td>
-              <td>
-                <p class="cs-help-main">
-                  A location palette item that is able to process Google Map urls.  Drop any url onto the canvas (e.g.
-                  <a id="cs-help-link-010" class="cs-dynamic-link">New York</a>
-                  and the location item will be used by default, rendering a small map onto the new location node
-                  on the canvas.
-                  A map pane is also provided which aggregates all location nodes onto a unified map view.
-                </p>
-              </td>
-            </tr>
-<!--            <tr>-->
-<!--              <td rowspan="2"><span class="cs-help-bold">Media</span> (cognisketch-contrib-media)</td>-->
-<!--              <td>-->
-<!--                <img src="/javascripts/private/core/core_panes/help/content/images/item_webcam.png" width="150px" alt="The Webcam palette item">-->
-<!--              </td>-->
-<!--              <td>-->
-<!--                <p class="cs-help-main">-->
-<!--                  A webcam palette item that streams the webcam feed from the user's device (if available and allowed)-->
-<!--                  to a node on the canvas.  Can be then integrated with other functions as needed, for example to-->
-<!--                  provide real time entity detection as shown in-->
-<!--                  <a id="cs-help-link-011" class="cs-dynamic-link">this video</a>.-->
-<!--                </p>-->
-<!--              </td>-->
-<!--            </tr>-->
-<!--            <tr>-->
-<!--              <td>-->
-<!--                <img src="/javascripts/private/core/core_panes/help/content/images/item_microphone.png" width="150px" alt="The Microphone palette item">-->
-<!--              </td>-->
-<!--              <td>-->
-<!--                <p class="cs-help-main">-->
-<!--                  A microphone palette item that streams the audio feed from the user's device (if available and-->
-<!--                  allowed) to a node on the canvas.  Also uses local voice-to text capabilities to enable the user to-->
-<!--                  speak and have the words transcribed onto the canvas.-->
-<!--                </p>-->
-<!--              </td>-->
-<!--            </tr>-->
-<!--            <tr>-->
-<!--              <td rowspan="2"><span class="cs-help-bold">NLU</span> (cognisketch-contrib-nlu)</td>-->
-<!--              <td>-->
-<!--                <img src="/javascripts/private/core/core_panes/help/content/images/function_nlu_entities.png" width="150px" alt="The NLU entities function">-->
-<!--              </td>-->
-<!--              <td rowspan="2">-->
-<!--              <p class="cs-help-main">-->
-<!--                  A function for doing Natural Language Understanding or Processing (NLU/NLP) using an-->
-<!--                  externally hosted API service (IBM Watson).  Two modes are available ("entities" and "categories"),-->
-<!--                  giving different results.  Drop the relevant function onto a node containing text that needs to be-->
-<!--                  processed, and all extracted entities or categories will be created as new items on the palette.-->
-<!--                </p>-->
-<!--              </td>-->
-<!--            </tr>-->
-<!--            <tr>-->
-<!--              <td>-->
-<!--                <img src="/javascripts/private/core/core_panes/help/content/images/function_nlu_categories.png" width="150px" alt="The NLU categories function">-->
-<!--              </td>-->
-<!--            </tr>-->
-<!--            <tr>-->
-<!--              <td><span class="cs-help-bold">PDF</span> (cognisketch-contrib-pdf)</td>-->
-<!--              <td>-->
-<!--                <img src="/javascripts/private/core/core_panes/help/content/images/function_pdf.png" width="150px" alt="The PDF reader function">-->
-<!--              </td>-->
-<!--              <td>-->
-<!--                <p class="cs-help-main">-->
-<!--                  A simple function to extract text from any PDF file, using a local library rather than an-->
-<!--                  online service.-->
-<!--                  Drop the function onto a file node with a PDF and any extracted text will be created as a new-->
-<!--                  single text node on the canvas.  In a future version images and other PDF structure may also -->
-<!--                  e extracted.-->
-<!--                </p>-->
-<!--              </td>-->
-<!--            </tr>-->
-<!--            <tr>-->
-<!--              <td><span class="cs-help-bold">Timeline</span> (cognisketch-contrib-timeline)</td>-->
-<!--              <td>-->
-<!--                <img src="/javascripts/private/core/core_panes/help/content/images/tab_timeline.png" width="75px" alt="The Timeline tab">-->
-<!--              </td>-->
-<!--              <td>-->
-<!--                <p class="cs-help-main">-->
-<!--                  A new tab to summarise any date/time information as a timeline view.  Still under development.-->
-<!--                </p>-->
-<!--              </td>-->
-<!--            </tr>-->
-            <tr>
-              <td><span class="cs-help-bold">Twitter</span> (cognisketch-contrib-twitter)</td>
-              <td>
-                <img src="/javascripts/private/core/core_panes/help/content/images/item_tweet.png" width="150px" alt="The Tweet palette item">
-              </td>
-              <td>
-                <p class="cs-help-main">
-                  A tweet palette item that is used to render tweets onto the canvas.  Either copy or drop a tweet url
-                  onto the canvas or drop an empty tweet palette item onto the canvas, and then copy/drop the tweet url
-                  onto that (e.g. <a id="cs-help-link-012" class="cs-dynamic-link">this tweet</a>.
-                  The tweet will then be rendered on the canvas in the same styling as twitter, and various
-                  properties will be added to the node (tweet author, hashtags, etc.).
-                </p>
-              </td>
-            </tr>
-<!--            <tr>-->
-<!--              <td rowspan="2"><span class="cs-help-bold">Visual Recognition</span> (cognisketch-contrib-visual-recognition)</td>-->
-<!--              <td>-->
-<!--                <img src="/javascripts/private/core/core_panes/help/content/images/function_reverse_image.png" width="150px" alt="The Reverse Image Search function">-->
-<!--              </td>-->
-<!--              <td>-->
-<!--                <p class="cs-help-main">-->
-<!--                  A simple function to perform reverse image search on any image.  This is done using the Google-->
-<!--                  reverse image search API, and results include the features of the image and the usage of matches-->
-<!--                  or close matches on the web.  These results are created as new nodes on the canvas.-->
-<!--                </p>-->
-<!--              </td>-->
-<!--            </tr>-->
-<!--            <tr>-->
-<!--              <td>-->
-<!--                <img src="/javascripts/private/core/core_panes/help/content/images/function_visual_recognition.png" width="150px" alt="The Visual Recognition function">-->
-<!--              </td>-->
-<!--              <td>-->
-<!--                <p class="cs-help-main">-->
-<!--                  A simple function to perform visual recognition on any image node.  This looks at the contents-->
-<!--                  of the image and tries to identify entities, colors and other aspects of the image.  The resulting-->
-<!--                  information is rendered as new nodes on the canvas and is achieved using IBM Watson visual-->
-<!--                  recognition service.-->
-<!--                </p>-->
-<!--              </td>-->
-<!--            </tr>-->
           </tbody>
         </table>
       </div>

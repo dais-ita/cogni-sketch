@@ -301,7 +301,7 @@ properties being specified along with positional information (x, y coordinates).
 You can use a simple HTTP tool such as curl to test this in your environment, for example:
 
 ```
-curl -H "Content-Type: application/json" -X POST -d '{your JSON here}' "http://localhost:5010/project/propose/testproject?owner=user_01"
+curl -H "Content-Type: application/json" -X POST -d '{"objects": [{"uid":"proposal_obj_001", "type": "header", "mode": "empty", "expanded": 1, "selected": false, "showType": false, "hide": false, "pos": {"x": 100, "y": 100}, "linkRefs": [], "data": {"properties": {}, "label": "A new header"}},{"uid": "proposal_obj_002", "type": "text", "mode": "full", "expanded": 1, "selected": false, "showType": false, "hide": false, "pos": {"x": 500, "y": 300},"linkRefs": ["proposal_link_001"],"data":{"properties":{"text": {"type": "text", "value": "This is my test text node"}}}}], "links": [{"uid": "proposal_link_001", "selected": false, "data": {"properties": {}, "label": "test link"}, "anchorPos": 0.5, "bender": 0, "bidirectional": false, "sourceRef": "proposal_obj_001","targetRef": "proposal_obj_002"}]}' "http://admin:password@localhost:5010/project/propose/testproject?owner=user_01"
 ```
 
 Note that in the current implementation it is not possible to also upload images or files

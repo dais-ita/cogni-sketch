@@ -260,8 +260,6 @@ function saveProject(req) {
         const projFolder = path.join(csp.getUserPath(req), obj.project);
         const fileName = path.join(projFolder, 'ObjectModel.json');
 
-        console.log(req.body);
-
         // Set the server timestamp to the time now, to indicate when it was saved
         obj.server_ts = Date.now();
 

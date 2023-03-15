@@ -18,10 +18,11 @@ any copyright notation hereon.`
 To learn more about the environment you can refer to various short videos on YouTube,
 e.g. [this introductory video](https://www.youtube.com/watch?v=KmaheXO6D9M)
 
-# Installation
+## Installation
 These instructions assume that you have [git](https://git-scm.com/),
 [nodeJS and npm](https://nodejs.org/en/) installed, and have used npm to install
-[pm2](https://pm2.keymetrics.io/docs/usage/quick-start/) or similar.  The installation has been tested on Mac-OS, Linux and Windows.
+[pm2](https://pm2.keymetrics.io/docs/usage/quick-start/) or similar.  The installation has been
+tested on Mac-OS, Linux and Windows.
 
 To run your own copy of the Cogni-sketch environment clone from the repository
 
@@ -45,6 +46,7 @@ environment and copy various example files into the correct locations.
 Finally, edit the `creds.js` file that has been copied into the root folder and specify a
 secret key that will be used by express to encrypt cookie values.
 
+### Plugins
 You may also wish to add plugins to provide additional actions, functions, pane or popups.
 You can do this by following the instructions for each plugin and cloning into the `/plugins`
 folder and creating a corresponding entry in `plugins.js` and `data/function/functions.json`
@@ -55,6 +57,7 @@ A number of common plugins can be found in the
 Each plugin is located in a specific sub-folder within that repository and has individual
 installation and setup instructions.
 
+### Backups
 You may wish to regularly backup the `/data` folder and all sub-folders since this is where 
 all of your user data will be created as you use the Cogni-sketch environment. If you later
 copy this folder to a new Cogni-sketch environment then you will have successfully migrated
